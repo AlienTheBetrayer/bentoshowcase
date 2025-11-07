@@ -4,6 +4,7 @@ import { useLoadingContext } from '../../loading/context/LoadingContext';
 import './Header.css';
 
 import { motion } from 'motion/react';
+import { useLocalStore } from '../../../zustand/localStore';
 import { LinkButton } from '../../ui/LinkButton/components/LinkButton';
 import { ToggleButton } from '../../ui/ToggleButton/components/ToggleButton';
 
@@ -46,6 +47,8 @@ export const Header = () => {
             });
     }, [loadingState.hasInitialFinished, loadingState.hasHeaderFinished]);
 
+    const { theme, toggleTheme } = useLocalStore();
+
     return (
         <motion.header
             whileHover={
@@ -56,7 +59,10 @@ export const Header = () => {
         >
             <nav>
                 <LinkButton to='/home'>Home</LinkButton>
-                <ToggleButton />
+                <ToggleButton
+                    value={theme !== 'dark'}
+                    onChange={() => toggleTheme()}
+                />
             </nav>
         </motion.header>
     );

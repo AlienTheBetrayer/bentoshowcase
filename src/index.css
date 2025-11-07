@@ -42,8 +42,27 @@
 :root[data-theme='light'] {
     /* background */
     --background: #fff;
-    --background-transparent: rgba(246, 248, 252, 0.4);
-    --background-transparent-2: hsla(220, 50%, 90%, 0.4);
+    --background-2: hsl(0, 0%, 95%);
+    --background-3: hsl(0, 0%, 90%);
+    --background-4: hsl(0, 0%, 85%);
+    --background-5: hsl(0, 0%, 80%);
+    --background-6: hsl(0, 0%, 75%);
+    --background-7: hsl(0, 0%, 70%);
+    --background-8: hsl(0, 0%, 65%);
+    --background-9: hsl(0, 0%, 60%);
+    --background-10: hsl(0, 0%, 55%);
+
+    /* transparent background */
+    --background-transparent: hsla(0, 0%, 100%, 0.4);
+    --background-2-transparent: hsla(0, 0%, 95%, 0.4);
+    --background-3-transparent: hsla(0, 0%, 90%, 0.4);
+    --background-4-transparent: hsla(0, 0%, 85%, 0.4);
+    --background-5-transparent: hsla(0, 0%, 80%, 0.4);
+    --background-6-transparent: hsla(0, 0%, 75%, 0.4);
+    --background-7-transparent: hsla(0, 0%, 70%, 0.4);
+    --background-8-transparent: hsla(0, 0%, 65%, 0.4);
+    --background-9-transparent: hsla(0, 0%, 60%, 0.4);
+    --background-10-transparent: hsla(0, 0%, 55%, 0.4);
 
     /* foreground */
     --foreground: #6e7a89;
