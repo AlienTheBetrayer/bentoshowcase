@@ -1,0 +1,22 @@
+.loading-container {
+    position: fixed;
+    display: flex;
+    background-color: var(--background);
+}
+
+.loading-chunk {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+}
+
+.loading-element {
+    width: 75%;
+    height: 75%;
+    border-radius: 4vw;
+    background-color: transparent;
+    background-color: blue;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+}
