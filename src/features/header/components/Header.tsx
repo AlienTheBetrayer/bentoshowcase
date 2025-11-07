@@ -7,18 +7,28 @@ export const Header = () => {
     const [loadingState] = useLoadingContext();
 
     useGSAP(() => {
-        if (!loadingState.hasInitialFinished) return;
+        if (!loadingState.hasInitialFinished) {
+            gsap.to('header', {
+                y: -100,
+                duration: 0,
+            });
+            return;
+        }
 
         gsap.timeline()
             .to('header', {
+                y: 0,
+                duration: 0.75,
+            })
+            .to('header', {
                 maxWidth: '1000px',
-                duration: 1,
-                ease: 'power4.inOut',
+                duration: 0.75,
+                ease: 'circ.inOut',
             })
             .to('header', {
                 maxWidth: '200px',
-                duration: 1,
-                ease: 'power4.inOut',
+                duration: 0.75,
+                ease: 'circ.inOut',
             });
     }, [loadingState.hasInitialFinished]);
 
