@@ -1,11 +1,11 @@
 /* global variables */
 :root {
     /* font sizes */
-    --font-h1: 3rem;
-    --font-h2: 2rem;
-    --font-h3: 1.25rem;
-    --font-h4: 0.9rem;
-    --font-p: 0.75rem;
+    --font-h1: 5rem;
+    --font-h2: 4rem;
+    --font-h3: 2rem;
+    --font-h4: 1.25rem;
+    --font-p: 0.9rem;
 
     /* background */
     --background: #000;
@@ -32,11 +32,11 @@
     --background-10-transparent: hsla(0, 0%, 45%, 0.4);
 
     /* foreground */
-    --foreground: #9aa0a8;
+    --foreground: hsl(214, 7%, 55%);
     --foreground-last: #fff;
 
     /* element-specific */
-    --bold-brightness: 1.25;
+    --bold-brightness: 1.5;
 }
 
 :root[data-theme='light'] {
@@ -65,11 +65,11 @@
     --background-10-transparent: hsla(0, 0%, 55%, 0.4);
 
     /* foreground */
-    --foreground: #6e7a89;
+    --foreground: hsl(213, 11%, 55%);
     --foreground-last: #000;
 
     /* element-specific */
-    --bold-brightness: 0.75;
+    --bold-brightness: 0.65;
 }
 
 /* global elements */
@@ -103,6 +103,22 @@ label {
 
 button {
     cursor: pointer;
+}
+
+h1 {
+    font-size: var(--font-h1);
+}
+
+h2 {
+    font-size: var(--font-h2);
+}
+
+h3 {
+    font-size: var(--font-h3);
+}
+
+h4 {
+    font-size: var(--font-h4);
 }
 
 h1,
