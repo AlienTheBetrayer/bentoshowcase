@@ -1,7 +1,15 @@
 header { 
     position: fixed;
+    width: 100%;
+    max-width: 200px;
+    margin: 1rem auto;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 nav {
-    
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    height: 3rem;
+    background-color: blue;
 }
