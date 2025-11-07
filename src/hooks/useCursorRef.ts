@@ -3,8 +3,8 @@ import { useSpring } from 'motion/react';
 import { useEffect, useRef } from 'react';
 
 export const useCursorRef = (
-    springSmoothness?: SpringOptions,
     initial: { x: number; y: number } = { x: 0, y: 0 },
+    springSmoothness?: SpringOptions,
 ) => {
     const cursor = useRef<{ x: number; y: number }>(initial);
     const smoothed = useRef<{ x: MotionValue<number>; y: MotionValue<number> }>(

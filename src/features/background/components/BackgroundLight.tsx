@@ -11,16 +11,16 @@ export const BackgroundLight = ({ pointer }: Props) => {
     const lightRef = useRef<PointLight>(null);
     const three = useThree();
 
-    useFrame(state => {
+    useFrame((state) => {
         if (lightRef.current) {
             const t = state.clock.getElapsedTime();
             const internalPointer = {
                 x:
-                    (pointer.smoothed.current.x.get() / three.size.width) *
+                    (pointer.cursor.current.x / three.size.width) *
                         three.viewport.width -
                     three.viewport.width / 2,
                 y: -(
-                    (pointer.smoothed.current.y.get() / three.size.height) *
+                    (pointer.cursor.current.y / three.size.height) *
                         three.viewport.height -
                     three.viewport.height / 2 +
                     window.scrollY
@@ -35,5 +35,5 @@ export const BackgroundLight = ({ pointer }: Props) => {
         }
     });
 
-    return <pointLight ref={lightRef} intensity={256}/>;
+    return <pointLight ref={lightRef} intensity={256} />;
 };

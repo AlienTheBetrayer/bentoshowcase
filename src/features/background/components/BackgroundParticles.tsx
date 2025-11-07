@@ -31,11 +31,11 @@ export const BackgroundParticles = ({ pointer }: Props) => {
             const t = state.clock.getElapsedTime();
             const internalPointer = {
                 x:
-                    (pointer.smoothed.current.x.get() / three.size.width) *
+                    (pointer.cursor.current.x / three.size.width) *
                         three.viewport.width -
                     three.viewport.width / 2,
                 y: -(
-                    (pointer.smoothed.current.y.get() / three.size.height) *
+                    (pointer.cursor.current.y / three.size.height) *
                         three.viewport.height -
                     three.viewport.height / 2 +
                     window.scrollY
