@@ -1,20 +1,21 @@
 /* global variables */
 :root {
-    /* background */
-    --background: #000;
-
-    /* foreground */
-    --foreground: #fff;
-
-    /* element-specific */
-    --bold-brightness: 1.25;
-
     /* font sizes */
     --font-h1: 3rem;
     --font-h2: 2rem;
     --font-h3: 1.25rem;
     --font-h4: 0.9rem;
     --font-p: 0.75rem;
+
+    /* background */
+    --background: #000;
+
+    /* foreground */
+    --foreground: #fff;
+    --foreground-last: #fff;
+
+    /* element-specific */
+    --bold-brightness: 1.25;
 }
 
 :root[data-theme='light'] {
@@ -23,6 +24,7 @@
 
     /* foreground */
     --foreground: #000;
+    --foreground-last: #000;
 
     /* element-specific */
     --bold-brightness: 0.75;

@@ -1,0 +1,10 @@
+.link-button {
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+}
+
+.link-button:hover,
+.link-button:active {
+    color: var(--foreground-last);
+}
