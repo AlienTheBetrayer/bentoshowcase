@@ -1,7 +1,6 @@
 .loading-container {
     position: fixed;
     display: flex;
-    background-color: var(--background);
     z-index: 10;
 }
 
@@ -17,6 +16,5 @@
     height: 75%;
     border-radius: 4vw;
     background-color: transparent;
-    background-color: blue;
     backdrop-filter: blur(8px);
 }

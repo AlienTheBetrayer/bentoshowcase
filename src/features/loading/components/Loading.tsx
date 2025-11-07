@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'motion/react';
 import { useLoadingContext } from '../context/LoadingContext';
 import { useLoadingAnimation } from '../hooks/useLoadingAnimation';
 import './Loading.css';
@@ -10,14 +11,16 @@ export const Loading = () => {
     useLoadingAnimation();
 
     return (
-        !loadingState.hasInitialFinished && (
-            <div className='loading-container'>
-                {Array.from({ length: chunkQuantity }).map((_, idx) => (
-                    <div className='loading-chunk' key={idx}>
-                        <div className='loading-element'></div>
-                    </div>
-                ))}
-            </div>
-        )
+        <AnimatePresence>
+            {!loadingState.hasInitialFinished && (
+                <motion.div className='loading-container' exit={{ opacity: 0 }}>
+                    {Array.from({ length: chunkQuantity }).map((_, idx) => (
+                        <div className='loading-chunk' key={idx}>
+                            <div className='loading-element'></div>
+                        </div>
+                    ))}
+                </motion.div>
+            )}
+        </AnimatePresence>
     );
 };
