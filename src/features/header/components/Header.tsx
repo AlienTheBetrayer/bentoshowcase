@@ -4,7 +4,10 @@ import { useLoadingContext } from '../../loading/context/LoadingContext';
 import './Header.css';
 
 import { motion } from 'motion/react';
-import { LinkButton } from '../../ui/LinkButton';
+import { LinkButton } from '../../ui/LinkButton/components/LinkButton';
+import { ToggleButton } from '../../ui/ToggleButton/components/ToggleButton';
+
+const headerSize = 256;
 
 export const Header = () => {
     const [loadingState, setLoadingState] = useLoadingContext();
@@ -16,6 +19,7 @@ export const Header = () => {
             gsap.to('header', {
                 y: -100,
                 duration: 0,
+                maxWidth: `${headerSize / 2}px`,
             });
             return;
         }
@@ -31,7 +35,7 @@ export const Header = () => {
                 ease: 'circ.inOut',
             })
             .to('header', {
-                maxWidth: '200px',
+                maxWidth: `${headerSize}px`,
                 duration: 0.75,
                 ease: 'circ.inOut',
                 onComplete: () =>
@@ -45,13 +49,14 @@ export const Header = () => {
     return (
         <motion.header
             whileHover={
-                loadingState.hasHeaderFinished ? { maxWidth: '210px' } : {}
+                loadingState.hasHeaderFinished
+                    ? { maxWidth: `${headerSize + 10}px` }
+                    : {}
             }
         >
             <nav>
-                <LinkButton to='/home'>
-                Home
-                </LinkButton>
+                <LinkButton to='/home'>Home</LinkButton>
+                <ToggleButton />
             </nav>
         </motion.header>
     );

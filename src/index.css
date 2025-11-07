@@ -82,6 +82,10 @@ label {
     line-height: 1em;
 }
 
+button {
+    cursor: pointer;
+}
+
 h1,
 h2,
 h3,
