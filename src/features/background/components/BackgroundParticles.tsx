@@ -5,6 +5,7 @@ import { InstancedMesh, Object3D } from 'three';
 import { useCursorRef } from '../../../hooks/useCursorRef';
 
 import { ImprovedNoise } from 'three/examples/jsm/Addons.js';
+import { CSSVariable } from '../../../utils/CSSVariable';
 
 const noise = new ImprovedNoise();
 
@@ -74,7 +75,9 @@ export const BackgroundParticles = ({ pointer }: Props) => {
 
     return (
         <Instances ref={instancesRef} limit={100000}>
-            <meshPhysicalMaterial color='#969696' />
+            <meshPhysicalMaterial
+                color={CSSVariable('--background-orb-foreground')}
+            />
             <sphereGeometry args={[0.01]} />
 
             {Array.from({ length: size.columns * size.rows }).map((_, idx) => (
