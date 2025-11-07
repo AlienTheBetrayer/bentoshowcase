@@ -3,10 +3,14 @@ import gsap from 'gsap';
 import { useLoadingContext } from '../../loading/context/LoadingContext';
 import './Header.css';
 
+import { motion } from 'motion/react';
+
 export const Header = () => {
-    const [loadingState] = useLoadingContext();
+    const [loadingState, setLoadingState] = useLoadingContext();
 
     useGSAP(() => {
+        if (loadingState.hasHeaderFinished) return;
+
         if (!loadingState.hasInitialFinished) {
             gsap.to('header', {
                 y: -100,
@@ -21,7 +25,7 @@ export const Header = () => {
                 duration: 0.75,
             })
             .to('header', {
-                maxWidth: '1000px',
+                maxWidth: '750px',
                 duration: 0.75,
                 ease: 'circ.inOut',
             })
@@ -29,12 +33,21 @@ export const Header = () => {
                 maxWidth: '200px',
                 duration: 0.75,
                 ease: 'circ.inOut',
+                onComplete: () =>
+                    setLoadingState((prev) => ({
+                        ...prev,
+                        hasHeaderFinished: true,
+                    })),
             });
-    }, [loadingState.hasInitialFinished]);
+    }, [loadingState.hasInitialFinished, loadingState.hasHeaderFinished]);
 
     return (
-        <header>
+        <motion.header
+            whileHover={
+                loadingState.hasHeaderFinished ? { maxWidth: '250px' } : {}
+            }
+        >
             <nav></nav>
-        </header>
+        </motion.header>
     );
 };

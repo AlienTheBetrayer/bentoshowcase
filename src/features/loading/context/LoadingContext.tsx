@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 
 export interface LoadingData {
     hasInitialFinished: boolean;
+    hasHeaderFinished: boolean;
 }
 
 type LoadingContextType = [
@@ -18,6 +19,7 @@ interface Props {
 export const LoadingProvider = ({ children }: Props) => {
     const [state, setState] = useState<LoadingData>({
         hasInitialFinished: false,
+        hasHeaderFinished: false,
     });
 
     return (

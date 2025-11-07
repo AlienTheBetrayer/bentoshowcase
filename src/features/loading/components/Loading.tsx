@@ -9,14 +9,25 @@ export const Loading = () => {
     const [loadingState, setLoadingState] = useLoadingContext();
 
     useGSAP(() => {
+        if (loadingState.hasInitialFinished) return;
+
+        gsap.to('.loading-element', {
+            opacity: 0,
+            yPercent: 50,
+            duration: 0,
+        });
+
         gsap.timeline()
             .to('.loading-element', {
+                yPercent: 0,
                 opacity: 1,
+                duration: 1,
+                ease: 'power4.inOut',
             })
             .to('.loading-chunk', {
                 xPercent: -(chunkQuantity - 1) * 100,
-                duration: 3.5,
-                ease: 'power4.inOut',
+                duration: 3,
+                ease: 'power2.inOut',
             })
             .to('.loading-element', {
                 width: '33vw',
