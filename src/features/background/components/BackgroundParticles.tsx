@@ -8,8 +8,11 @@ import { ImprovedNoise } from 'three/examples/jsm/Addons.js';
 
 const noise = new ImprovedNoise();
 
-export const BackgroundParticles = () => {
-    const pointer = useCursorRef();
+interface Props {
+    pointer: ReturnType<typeof useCursorRef>;
+}
+
+export const BackgroundParticles = ({ pointer }: Props) => {
     const three = useThree();
     const instancesRef = useRef<InstancedMesh>(null);
     const dummy = new Object3D();
@@ -27,11 +30,11 @@ export const BackgroundParticles = () => {
             const t = state.clock.getElapsedTime();
             const internalPointer = {
                 x:
-                    (pointer.current.x / three.size.width) *
+                    (pointer.smoothed.current.x.get() / three.size.width) *
                         three.viewport.width -
                     three.viewport.width / 2,
                 y: -(
-                    (pointer.current.y / three.size.height) *
+                    (pointer.smoothed.current.y.get() / three.size.height) *
                         three.viewport.height -
                     three.viewport.height / 2 +
                     window.scrollY
@@ -52,15 +55,14 @@ export const BackgroundParticles = () => {
                     const dy = internalPointer.y - y;
                     const m = Math.sqrt(dx * dx + dy * dy);
 
-                    if(m < 2.5) {
-                        const dm = 2.5 - m / 1;
+                    if (m < 3) {
+                        const dm = 3 - m / 1;
                         const n = noise.noise(x, y, t) * 5;
                         dummy.scale.set(1 + dm * n, 1 + dm * n, 1 + dm * n);
                         dummy.position.set(x, y, n * 0.05);
                     } else {
                         dummy.scale.set(1, 1, 1);
-                    } 
-
+                    }
 
                     dummy.updateMatrix();
                     instancesRef.current.setMatrixAt(i++, dummy.matrix);

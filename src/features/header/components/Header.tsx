@@ -19,7 +19,7 @@ export const Header = () => {
         <motion.header
             whileHover={
                 loadingState.hasHeaderFinished
-                    ? { maxWidth: `${headerSize + 10}px` }
+                    ? { maxWidth: `${headerSize + 24}px` }
                     : {}
             }
         >
