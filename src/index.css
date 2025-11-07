@@ -9,9 +9,30 @@
 
     /* background */
     --background: #000;
+    --background-2: hsl(0, 0%, 5%);
+    --background-3: hsl(0, 0%, 10%);
+    --background-4: hsl(0, 0%, 15%);
+    --background-5: hsl(0, 0%, 20%);
+    --background-6: hsl(0, 0%, 25%);
+    --background-7: hsl(0, 0%, 30%);
+    --background-8: hsl(0, 0%, 35%);
+    --background-9: hsl(0, 0%, 40%);
+    --background-10: hsl(0, 0%, 45%);
+
+    /* transparent background */
+    --background-transparent: hsla(0, 0%, 0%, 0.4);
+    --background-2-transparent: hsla(0, 0%, 5%, 0.4);
+    --background-3-transparent: hsla(0, 0%, 10%, 0.4);
+    --background-4-transparent: hsla(0, 0%, 15%, 0.4);
+    --background-5-transparent: hsla(0, 0%, 20%, 0.4);
+    --background-6-transparent: hsla(0, 0%, 25%, 0.4);
+    --background-7-transparent: hsla(0, 0%, 30%, 0.4);
+    --background-8-transparent: hsla(0, 0%, 35%, 0.4);
+    --background-9-transparent: hsla(0, 0%, 40%, 0.4);
+    --background-10-transparent: hsla(0, 0%, 45%, 0.4);
 
     /* foreground */
-    --foreground: #fff;
+    --foreground: #9aa0a8;
     --foreground-last: #fff;
 
     /* element-specific */
@@ -21,9 +42,11 @@
 :root[data-theme='light'] {
     /* background */
     --background: #fff;
+    --background-transparent: rgba(246, 248, 252, 0.4);
+    --background-transparent-2: hsla(220, 50%, 90%, 0.4);
 
     /* foreground */
-    --foreground: #000;
+    --foreground: #6e7a89;
     --foreground-last: #000;
 
     /* element-specific */
@@ -63,7 +86,7 @@ h1,
 h2,
 h3,
 h4 {
-    color: var(--foreground);
+    color: var(--foreground-last);
     letter-spacing: -0.39px;
     line-height: 1em;
     margin: 0;

@@ -4,6 +4,7 @@ import { useLoadingContext } from '../../loading/context/LoadingContext';
 import './Header.css';
 
 import { motion } from 'motion/react';
+import { LinkButton } from '../../ui/LinkButton';
 
 export const Header = () => {
     const [loadingState, setLoadingState] = useLoadingContext();
@@ -44,10 +45,14 @@ export const Header = () => {
     return (
         <motion.header
             whileHover={
-                loadingState.hasHeaderFinished ? { maxWidth: '250px' } : {}
+                loadingState.hasHeaderFinished ? { maxWidth: '210px' } : {}
             }
         >
-            <nav></nav>
+            <nav>
+                <LinkButton to='/home'>
+                Home
+                </LinkButton>
+            </nav>
         </motion.header>
     );
 };

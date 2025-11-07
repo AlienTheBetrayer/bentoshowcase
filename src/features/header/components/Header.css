@@ -8,8 +8,17 @@ header {
 }
 
 nav {
+    padding: 0 1rem;
+    display: flex;
     border-radius: 20px;
     backdrop-filter: blur(12px);
     height: 3rem;
-    background-color: blue;
+    background: linear-gradient(246deg, var(--background-3-transparent), var(--background-6-transparent));
+    border: 2px solid var(--background-2);
+    transition: 0.3s all ease;
+}
+
+header:hover nav {
+    background: linear-gradient(200deg, var(--background-3-transparent), var(--background-7-transparent));
+    border: 2px solid var(--background-4);
 }
