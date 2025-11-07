@@ -10,10 +10,13 @@ export const FrontPage = () => {
     return (
         <LoadingProvider>
             <main className='page'>
+                <div style={{ display: 'grid', zIndex: '1', }}>
+
                 <Header />
 
                 <Loading />
                 <IntroSection />
+                </div>
 
                 <motion.div
                     style={{
@@ -21,6 +24,7 @@ export const FrontPage = () => {
                         inset: '0',
                         overflow: 'hidden',
                         pointerEvents: 'none',
+                        zIndex: '0',
                     }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
