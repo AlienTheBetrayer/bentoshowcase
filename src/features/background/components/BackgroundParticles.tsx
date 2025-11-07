@@ -16,6 +16,17 @@ export const BackgroundParticles = () => {
     useFrame((state) => {
         if (instancesRef.current) {
             const t = state.clock.getElapsedTime();
+            const internalPointer = {
+                x:
+                    (pointer.current.x / three.size.width) *
+                        three.viewport.width -
+                    three.viewport.width / 2,
+                y: -(
+                    (pointer.current.y / three.size.height) *
+                        three.viewport.height -
+                    three.viewport.height / 2 + window.scrollY
+                ),
+            };
 
             let i = 0;
             for (

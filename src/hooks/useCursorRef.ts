@@ -15,7 +15,5 @@ export const useCursorRef = (
         return () => window.removeEventListener('pointermove', handle);
     }, []);
 
-    return {
-        cursor,
-    };
+    return cursor;
 };
