@@ -14,10 +14,10 @@ export const useLoadingAnimation = () => {
             yPercent: 25,
             duration: 0,
         });
-        
+
         gsap.timeline()
-        .to('.loading-element', {
-            yPercent: 0,
+            .to('.loading-element', {
+                yPercent: 0,
                 opacity: 1,
                 duration: 0.75,
                 delay: 0.5,
@@ -41,7 +41,7 @@ export const useLoadingAnimation = () => {
                 duration: 1,
                 ease: 'circ.inOut',
             })
-            .to('.loading-container', {
+            .to('.loading-element', {
                 opacity: 0,
                 duration: 1,
                 onComplete: () =>

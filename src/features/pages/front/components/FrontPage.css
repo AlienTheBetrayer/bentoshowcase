@@ -1,0 +1,16 @@
+.front-background-wrapper {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.front-background-wrapper-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(16px);
+    z-index: 1;
+    pointer-events: none;
+}
