@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
     AnimatedText,
     type AnimatedTextContent,
@@ -18,19 +17,65 @@ export const IntroSection = () => {
 
     const p1Text: AnimatedTextContent[] = [
         {
-            text: 'Showcasing advanced techniques and a mastery of this craft — built for clean structure and bold visual impact.',
+            text: 'Showcasing   ',
             type: 'regular',
+        },
+        {
+            text: 'advanced techniques',
+            type: 'highlight',
+        },
+        {
+            text: ' and a mastery of this craft — built for ',
+            type: 'regular',
+        },
+        {
+            text: 'clean structure',
+            type: 'highlight',
+        },
+        {
+            text: ' and ',
+            type: 'regular',
+        },
+        {
+            text: 'bold visual impact.',
+            type: 'mark',
         },
     ];
 
     const p2Text: AnimatedTextContent[] = [
         {
-            text: 'Leveraging declarative React + TypeScript to push performance and precision even further, delivering an interface that looks sharp and feels even sharper.',
+            text: 'Leveraging declarative ',
             type: 'regular',
         },
+        {
+            text: 'React + TypeScript',
+            type: 'mark',
+        },
+        {
+            text: ' to push  ',
+            type: 'regular',
+        },
+        {
+            text: 'performance and precision',
+            type: 'highlight',
+        },
+        {
+            text: ' even further, delivering an interface that looks ',
+            type: 'regular',
+        },
+        {
+            text: 'sharp',
+            type: 'highlight',
+        },
+        {
+            text: ' and feels even ',
+            type: 'regular',
+        },
+        {
+            text: 'sharper.',
+            type: 'mark',
+        },
     ];
-
-    const a = useState<number>(3);
 
     return (
         loadingState.hasHeaderFinished && (
