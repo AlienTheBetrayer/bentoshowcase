@@ -1,18 +1,36 @@
 import { Canvas } from '@react-three/fiber';
 import './BentoGridCanvas.css';
 
-import { OrbitControls, RoundedBox } from '@react-three/drei';
+import { Center, OrbitControls } from '@react-three/drei';
 import { motion } from 'motion/react';
-import { useState } from 'react';
+import { useCallback } from 'react';
+import { BentoGridBlock } from './BentoGridBlock';
+
+export interface BentoGridBoxType {
+    position: [number, number, number];
+    size: [number, number, number];
+}
 
 export const BentoGridCanvas = () => {
-    const [isDragging, setIsDragging] = useState<boolean>(false);
+    const boxes: BentoGridBoxType[] = [
+        {
+            position: [-4, 7, 5],
+            size: [2, 3, 2],
+        },
+    ];
+
+    const handlePointerEnter = useCallback(() => {
+        document.body.style.cursor = 'pointer';
+    }, []);
+
+    const handlePointerLeave = useCallback(() => {
+        document.body.style.cursor = 'default';
+    }, []);
 
     return (
         <motion.div className='bento-grid-canvas-container'>
             <Canvas
                 style={{
-                    cursor: isDragging ? 'grabbing' : 'grab',
                     width: '100%',
                     height: '100%',
                     background: 'transparent',
@@ -22,16 +40,20 @@ export const BentoGridCanvas = () => {
                     fov: 45,
                 }}
                 gl={{ alpha: true }}
-                onPointerDown={() => setIsDragging(true)}
-                onPointerLeave={() => setIsDragging(false)}
-                onPointerUp={() => setIsDragging(false)}
             >
                 <pointLight position={[-4, 7, 5]} intensity={128} />
                 <hemisphereLight />
 
-                <RoundedBox position={[0, 0, 0]} args={[3, 6, 3]}>
-                    <meshPhysicalMaterial />
-                </RoundedBox>
+                <Center>
+                    {boxes.map((box, idx) => (
+                        <BentoGridBlock
+                            box={box}
+                            key={idx}
+                            onPointerEnter={handlePointerEnter}
+                            onPointerLeave={handlePointerLeave}
+                        />
+                    ))}
+                </Center>
 
                 <OrbitControls enableZoom={false} />
             </Canvas>
