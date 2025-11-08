@@ -2,6 +2,8 @@ import { Box, Edges } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import React, { useRef, type RefObject } from 'react';
 import type { Mesh } from 'three';
+import { CSSVariable } from '../../../utils/CSSVariable';
+import { useLocalStore } from '../../../zustand/localStore';
 import type { BentoGridBox } from '../context/types/BentoTypes';
 
 interface Props {
@@ -11,17 +13,21 @@ interface Props {
 
 export const BentoGridSelection = React.memo(
     ({ boxes, selectedRef }: Props) => {
+        const _ = useLocalStore().theme;
+
         const boxRef = useRef<Mesh>(null);
 
-        useFrame(() => {
+        useFrame((state) => {
             if (boxRef.current) {
+                const t = state.clock.getElapsedTime();
+
                 if (selectedRef.current === false) {
                     boxRef.current.visible = false;
                 } else {
                     boxRef.current.visible = true;
 
                     const box = boxes[selectedRef.current];
-                    const scaleFactor = 1.1;
+                    const scaleFactor = 1.15 + Math.sin(t * 5) * 0.1;
 
                     boxRef.current.scale.set(
                         box.size[0] * scaleFactor,
@@ -40,7 +46,7 @@ export const BentoGridSelection = React.memo(
         return (
             <Box ref={boxRef} args={[1, 1, 1]}>
                 <meshBasicMaterial transparent opacity={0} />
-                <Edges color='#fff' />
+                <Edges color={CSSVariable('--foreground-last')} />
             </Box>
         );
     }

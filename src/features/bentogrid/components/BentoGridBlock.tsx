@@ -15,8 +15,8 @@ export const BentoGridBlock = React.memo(
             <RoundedBox
                 position={[...box.position]}
                 args={[...box.size]}
-                radius={0.3}
-                smoothness={10}
+                radius={0.1}
+                smoothness={1}
                 receiveShadow
                 castShadow
                 // events
