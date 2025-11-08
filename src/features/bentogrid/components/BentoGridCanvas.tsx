@@ -12,13 +12,7 @@ export interface BentoGridBoxType {
 }
 
 export const BentoGridCanvas = () => {
-    const boxes: BentoGridBoxType[] = [
-        {
-            position: [-4, 7, 5],
-            size: [2, 3, 2],
-        },
-    ];
-
+    // handling functions (preventing re-renders)
     const handlePointerEnter = useCallback(() => {
         document.body.style.cursor = 'pointer';
     }, []);
@@ -26,6 +20,19 @@ export const BentoGridCanvas = () => {
     const handlePointerLeave = useCallback(() => {
         document.body.style.cursor = 'default';
     }, []);
+
+    // all the boxes
+    const boxes: BentoGridBoxType[] = [
+        {
+            position: [-4, 7, 5],
+            size: [2, 3, 2],
+        },
+        {
+            position: [-6.1, 7, 5],
+            size: [2, 3, 2],
+        },
+    ];
+
 
     return (
         <motion.div className='bento-grid-canvas-container'>

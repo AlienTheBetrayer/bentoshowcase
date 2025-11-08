@@ -14,8 +14,14 @@ export const BentoGridBlock = React.memo(
             <RoundedBox
                 position={[...box.position]}
                 args={[...box.size]}
-                onPointerEnter={() => onPointerEnter?.()}
-                onPointerLeave={() => onPointerLeave?.()}
+                onPointerEnter={(e) => {
+                    e.stopPropagation();
+                    onPointerEnter?.();
+                }}
+                onPointerLeave={(e) => {
+                    e.stopPropagation();
+                    onPointerLeave?.();
+                }}
             >
                 <meshPhysicalMaterial />
             </RoundedBox>
