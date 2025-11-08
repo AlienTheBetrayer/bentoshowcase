@@ -57,10 +57,10 @@ export const BackgroundParticles = ({ pointer }: Props) => {
                     const m = Math.sqrt(dx * dx + dy * dy);
 
                     if (m < 3) {
-                        const dm = 3 - m / 1;
-                        const n = noise.noise(x, y, t) * 5;
+                        const dm = 3 - m;
+                        const n = noise.noise(x, y, t / 2) * 5;
                         dummy.scale.set(1 + dm * n, 1 + dm * n, 1 + dm * n);
-                        dummy.position.set(x, y, n * 0.05);
+                        dummy.position.set(x, y, n * 0.15 * dm);
                     } else {
                         dummy.scale.set(1, 1, 1);
                     }
@@ -77,6 +77,8 @@ export const BackgroundParticles = ({ pointer }: Props) => {
         <Instances ref={instancesRef} limit={100000}>
             <meshPhysicalMaterial
                 color={CSSVariable('--background-orb-foreground')}
+                opacity={Number(CSSVariable('--background-orb-opacity'))}
+                transparent
             />
             <sphereGeometry args={[0.01]} />
 

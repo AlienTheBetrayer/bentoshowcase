@@ -37,7 +37,8 @@
 
     /* element-specific */
     --bold-brightness: 1.5;
-    --background-orb-foreground: #9baeff;
+    --background-orb-foreground: hsl(229, 100%, 80%);
+    --background-orb-opacity: 0.3;
 }
 
 :root[data-theme='light'] {
@@ -72,6 +73,7 @@
     /* element-specific */
     --bold-brightness: 0.65;
     --background-orb-foreground: #606060;
+    --background-orb-opacity: 1;
 }
 
 /* global elements */

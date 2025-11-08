@@ -1,5 +1,7 @@
 .intro-container {
-    max-width: 500px;
+    display: grid;
+    gap: 1rem;
+    max-width: 600px;
     text-align: center;
     margin: 0 auto;
 }

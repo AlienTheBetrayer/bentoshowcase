@@ -1,7 +1,9 @@
-import { BentoGridCanvas } from "../../../../bentogrid/components/BentoGridCanvas"
+import { BentoGridCanvas } from '../../../../bentogrid/components/BentoGridCanvas';
 
 export const GridSection = () => {
     return (
-        <BentoGridCanvas/>
-    )
-}
+        <section className='section'>
+            <BentoGridCanvas />
+        </section>
+    );
+};
