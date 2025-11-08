@@ -1,9 +1,9 @@
 import { RoundedBox } from '@react-three/drei';
 import React from 'react';
-import type { BentoGridBoxType } from './BentoGridCanvas';
+import type { BentoGridBox } from '../context/types/BentoTypes';
 
 interface Props {
-    box: BentoGridBoxType;
+    box: BentoGridBox;
     onPointerEnter?: () => void;
     onPointerLeave?: () => void;
 }

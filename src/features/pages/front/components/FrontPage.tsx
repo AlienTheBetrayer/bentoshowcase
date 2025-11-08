@@ -1,4 +1,5 @@
 import { BackgroundCanvas } from '../../../background/components/BackgroundCanvas';
+import { BentoProvider } from '../../../bentogrid/context/BentoContext';
 import { Header } from '../../../header/components/Header';
 import { Loading } from '../../../loading/components/Loading';
 import {
@@ -14,26 +15,28 @@ import { motion } from 'motion/react';
 export const FrontPage = () => {
     return (
         <LoadingProvider>
-            <main className='page'>
-                <div style={{ display: 'grid', zIndex: '1', gap: '2rem' }}>
-                    <FrontPageBackground />
-                    <Loading />
+            <BentoProvider>
+                <main className='page'>
+                    <div style={{ display: 'grid', zIndex: '1', gap: '2rem' }}>
+                        <FrontPageBackground />
+                        <Loading />
 
-                    <Header />
-                    <IntroSection />
-                    <GridSection/>
-                </div>
+                        <Header />
+                        <IntroSection />
+                        <GridSection />
+                    </div>
 
-                <motion.div
-                    className='front-background-wrapper'
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1, duration: 2 }}
-                    style={{ width: '100%', height: '100%' }}
-                >
-                    <BackgroundCanvas />
-                </motion.div>
-            </main>
+                    <motion.div
+                        className='front-background-wrapper'
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1, duration: 2 }}
+                        style={{ width: '100%', height: '100%' }}
+                    >
+                        <BackgroundCanvas />
+                    </motion.div>
+                </main>
+            </BentoProvider>
         </LoadingProvider>
     );
 };
