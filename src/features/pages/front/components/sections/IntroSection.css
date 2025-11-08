@@ -4,4 +4,9 @@
     max-width: 600px;
     text-align: center;
     margin: 0 auto;
+    transition: 0.3s all ease-in-out;
+}
+
+.intro-container:hover {
+    transform: scale(1.025);
 }
