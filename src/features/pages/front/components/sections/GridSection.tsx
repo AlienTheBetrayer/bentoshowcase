@@ -38,6 +38,7 @@ export const GridSection = () => {
                 <AnimatePresence>
                     {state.selectedIdx !== false && (
                         <BentoSelectedCard
+                        onInteract={() => dispatch({ type: 'SELECT_BLOCK', idx: false})}
                             card={
                                 state.boxes.find(
                                     (box) => box.idx === state.selectedIdx
