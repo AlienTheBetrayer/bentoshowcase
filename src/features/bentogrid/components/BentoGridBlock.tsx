@@ -1,4 +1,3 @@
-import { RoundedBox } from '@react-three/drei';
 import React from 'react';
 import type { BentoGridBox } from '../context/types/BentoTypes';
 
@@ -12,11 +11,8 @@ interface Props {
 export const BentoGridBlock = React.memo(
     ({ box, onPointerEnter, onPointerLeave, onClick }: Props) => {
         return (
-            <RoundedBox
+            <mesh
                 position={[...box.position]}
-                args={[...box.size]}
-                radius={0.1}
-                smoothness={10}
                 receiveShadow
                 castShadow
                 // events
@@ -33,8 +29,13 @@ export const BentoGridBlock = React.memo(
                     onClick?.(box.idx);
                 }}
             >
-                <meshPhysicalMaterial transparent opacity={0.75}/>
-            </RoundedBox>
+                <boxGeometry args={[...box.size]} />
+                <meshPhysicalMaterial
+                    metalness={0.95}
+                    roughness={0}
+                    color='#fff'
+                />
+            </mesh>
         );
     }
 );

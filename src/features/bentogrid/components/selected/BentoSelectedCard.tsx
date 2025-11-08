@@ -1,17 +1,18 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { Button } from '../../ui/Button/components/Button';
-import type { BentoGridBoxContent } from '../context/types/BentoTypes';
+import { Button } from '../../../ui/Button/components/Button';
+import type { BentoGridBox } from '../../context/types/BentoTypes';
 import './BentoSelectedCard.css';
+import { BentoSelectedCardCanvas } from './BentoSelectedCardCanvas';
 
 interface Props {
-    card: BentoGridBoxContent | undefined;
+    box: BentoGridBox | undefined;
     onInteract?: () => void;
 }
 
-export const BentoSelectedCard = ({ card, onInteract }: Props) => {
+export const BentoSelectedCard = ({ box, onInteract }: Props) => {
     return (
         <AnimatePresence>
-            {card !== undefined && (
+            {box !== undefined && (
                 <motion.div
                     className='bento-selected-container'
                     initial={{ opacity: 0 }}
@@ -19,24 +20,15 @@ export const BentoSelectedCard = ({ card, onInteract }: Props) => {
                     exit={{ opacity: 0 }}
                 >
                     <motion.div className='bento-selected-card'>
-                        <div className='bento-selected-card-topline'>
-                            <h4>{card.title}</h4>
-                            <Button
-                                style={{ marginLeft: 'auto' }}
-                                onClick={() => onInteract?.()}
-                            >
-                                ✕
-                            </Button>
-                        </div>
+                        <div style={{ flex: '1'}}>
 
-                        <div className='bento-selected-card-main'>
-                            <p>{card.description}</p>
+                        <BentoSelectedCardCanvas box={box} />
                         </div>
                     </motion.div>
 
                     <motion.div className='bento-selected-card bento-selected-card-content'>
                         <div className='bento-selected-card-topline'>
-                            <h4>{card.title}</h4>
+                            <h4>{box.content.title}</h4>
                             <Button
                                 style={{ marginLeft: 'auto' }}
                                 onClick={() => onInteract?.()}
@@ -46,7 +38,7 @@ export const BentoSelectedCard = ({ card, onInteract }: Props) => {
                         </div>
 
                         <div className='bento-selected-card-main'>
-                            <p>{card.description}</p>
+                            <p>{box.content.description}</p>
                         </div>
                     </motion.div>
                 </motion.div>

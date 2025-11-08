@@ -30,25 +30,27 @@
     flex-direction: column;
     width: 100%;
     max-width: 300px;
-    min-height: 400px;
+    height: 400px;
 
     background-color: var(--background);
-    border: 2px solid var(--background-3);
+    border: 2px solid var(--background-2);
     border-radius: 16px;
     pointer-events: all;
+    overflow: hidden;
+    position: relative;
 }
 
 @media (max-width: 768px) {
     .bento-selected-card {
         max-width: 400px;
-        min-height: 200px;
+        height: 200px;
     }
 }
 
 /* second card */
 .bento-selected-card-content {
     max-width: 600px;
-    min-height: 400px;
+    height: 400px;
 }
 
 /* card parts (works for both) */
@@ -59,7 +61,7 @@
     height: 48px;
     
     padding: 0.5rem 1rem;
-    border-bottom: 2px solid var(--background-3);
+    border-bottom: 2px solid var(--background-2);
 }
 
 .bento-selected-card-main {

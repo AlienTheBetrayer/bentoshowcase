@@ -46,7 +46,7 @@ export const BentoGridCanvas = () => {
                 }}
                 gl={{ alpha: true }}
             >
-                <pointLight position={[-3, 10, 3]} intensity={128} />
+                <pointLight position={[-3, 5, 3]} intensity={256} />
                 <ambientLight intensity={0.1} />
 
                 <Center>
@@ -68,7 +68,7 @@ export const BentoGridCanvas = () => {
                     )}
                 </Center>
 
-                <OrbitControls enableZoom={false} />
+                <OrbitControls enableZoom={false} enablePan={false} />
             </Canvas>
         </motion.div>
     );

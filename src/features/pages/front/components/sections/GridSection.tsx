@@ -2,7 +2,7 @@ import gsap from 'gsap';
 import { useEffect } from 'react';
 import { usePopup } from '../../../../../hooks/usePopup';
 import { BentoGridCanvas } from '../../../../bentogrid/components/BentoGridCanvas';
-import { BentoSelectedCard } from '../../../../bentogrid/components/BentoSelectedCard';
+import { BentoSelectedCard } from '../../../../bentogrid/components/selected/BentoSelectedCard';
 import { useBentoContext } from '../../../../bentogrid/context/BentoContext';
 import { useLoadingContext } from '../../../../loading/context/LoadingContext';
 import './GridSection.css';
@@ -32,10 +32,7 @@ export const GridSection = () => {
     const cardPopup = usePopup(
         <BentoSelectedCard
             onInteract={() => dispatch({ type: 'SELECT_BLOCK', idx: false })}
-            card={
-                state.boxes.find((box) => box.idx === state.selectedIdx)
-                    ?.content
-            }
+            box={state.boxes.find((box) => box.idx === state.selectedIdx)}
         />,
         () => dispatch({ type: 'SELECT_BLOCK', idx: false })
     );
