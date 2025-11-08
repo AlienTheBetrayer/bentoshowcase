@@ -4,12 +4,8 @@ import './BentoGridCanvas.css';
 import { Center, OrbitControls } from '@react-three/drei';
 import { motion } from 'motion/react';
 import { useCallback } from 'react';
+import { useBentoContext } from '../context/BentoContext';
 import { BentoGridBlock } from './BentoGridBlock';
-
-export interface BentoGridBoxType {
-    position: [number, number, number];
-    size: [number, number, number];
-}
 
 export const BentoGridCanvas = () => {
     // handling functions (preventing re-renders)
@@ -21,18 +17,7 @@ export const BentoGridCanvas = () => {
         document.body.style.cursor = 'default';
     }, []);
 
-    // all the boxes
-    const boxes: BentoGridBoxType[] = [
-        {
-            position: [-4, 7, 5],
-            size: [2, 3, 2],
-        },
-        {
-            position: [-6.1, 7, 5],
-            size: [2, 3, 2],
-        },
-    ];
-
+    const [state, dispatch] = useBentoContext();
 
     return (
         <motion.div className='bento-grid-canvas-container'>
@@ -52,7 +37,7 @@ export const BentoGridCanvas = () => {
                 <hemisphereLight />
 
                 <Center>
-                    {boxes.map((box, idx) => (
+                    {state.boxes.map((box, idx) => (
                         <BentoGridBlock
                             box={box}
                             key={idx}
