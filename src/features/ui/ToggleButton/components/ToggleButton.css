@@ -4,8 +4,8 @@
     height: 2rem;
     width: 3.5rem;
     border-radius: 24px;
-    background-color: var(--background-2);
-    border: 1px solid var(--background-3);
+    background-color: var(--background-2-transparent);
+    border: 1px solid var(--background-3-transparent);
     transition: background 0.5s, border 0.15s;
 }
 
@@ -13,28 +13,28 @@
     height: 1rem;
     width: 1rem;
     border-radius: 1000px;
-    background-color: var(--background-4);
+    background-color: var(--background-4-transparent);
     transition: background 0.5s, border 0.15s;
 }
 
 .toggle-button:hover {
-    border: 1px solid var(--background-4);
+    border: 1px solid var(--background-4-transparent);
 }
 
 .toggle-button:active {
-    background-color: var(--background-3);
+    background-color: var(--background-3-transparent);
     transition: 0.15s;
 }
 
 .toggle-button:active .toggle-button-thumb {
-    background-color: var(--background-6);
+    background-color: var(--background-6-transparent);
 }
 
 /* states */
 .toggle-button-toggled {
-    background-color: var(--background-3);
+    background-color: var(--background-3-transparent);
 }
 
 .toggle-button-toggled .toggle-button-thumb {
-    background-color: var(--background-5);
+    background-color: var(--background-5-transparent);
 }

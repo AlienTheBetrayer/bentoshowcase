@@ -1,7 +1,10 @@
 .grid-section {
     min-height: 800px;
+    overflow: hidden;
+}
+
+.grid-section-border {
     border-radius: 128px;
     backdrop-filter: blur(4px);
-    background-color: var(--background-transparent);
-    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.3);
 }

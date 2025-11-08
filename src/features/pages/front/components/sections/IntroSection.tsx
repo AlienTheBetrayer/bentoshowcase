@@ -78,7 +78,7 @@ export const IntroSection = () => {
     ];
 
     return (
-        <section className='section' style={{ marginTop: '8rem' }}>
+        <section className='section intro-section'>
             <div className='intro-container'>
                 {loadingState.hasHeaderFinished && (
                     <>

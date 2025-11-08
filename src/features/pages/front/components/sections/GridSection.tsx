@@ -3,9 +3,11 @@ import { useEffect } from 'react';
 import { BentoGridCanvas } from '../../../../bentogrid/components/BentoGridCanvas';
 import { useLoadingContext } from '../../../../loading/context/LoadingContext';
 import './GridSection.css';
+import { useBentoContext } from '../../../../bentogrid/context/BentoContext';
 
 export const GridSection = () => {
     const [loadingState] = useLoadingContext();
+    const [state, dispatch] = useBentoContext();
 
     useEffect(() => {
         if (loadingState.hasHeaderFinished) {
@@ -27,7 +29,9 @@ export const GridSection = () => {
 
     return (
         <section className='section grid-section' style={{ marginTop: '4rem' }}>
-            <BentoGridCanvas />
+            <div className='grid-section-border'>
+                <BentoGridCanvas />
+            </div>
         </section>
     );
 };

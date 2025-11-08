@@ -12,6 +12,7 @@ export const useHeaderAnimation = () => {
         if (!loadingState.hasInitialFinished) {
             gsap.to('header', {
                 y: -100,
+                xPercent: -50,
                 duration: 0,
                 maxWidth: `${headerSize / 2}px`,
             });
@@ -25,7 +26,7 @@ export const useHeaderAnimation = () => {
                 duration: 0.75,
             })
             .to('header', {
-                maxWidth: '750px',
+                maxWidth: '70vw',
                 duration: 0.75,
                 ease: 'circ.inOut',
             })

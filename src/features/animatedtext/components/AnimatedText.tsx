@@ -38,7 +38,7 @@ export const AnimatedText = ({ delay, as, text, duration, ...rest }: Props) => {
             {text.map((segment, i) => (
                 <span
                     className='animated-word'
-                    style={{ display: 'inline' }}
+                    style={{ display: 'inline', overflowWrap: 'anywhere' }}
                     key={`word-${i}`}
                 >
                     {Array.from(segment.text).map((letter) => (

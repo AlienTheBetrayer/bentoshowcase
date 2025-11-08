@@ -16,7 +16,7 @@ export const BentoGridBlock = React.memo(
                 position={[...box.position]}
                 args={[...box.size]}
                 radius={0.1}
-                smoothness={1}
+                smoothness={10}
                 receiveShadow
                 castShadow
                 // events
@@ -33,7 +33,7 @@ export const BentoGridBlock = React.memo(
                     onClick?.(box.idx);
                 }}
             >
-                <meshPhysicalMaterial />
+                <meshPhysicalMaterial transparent opacity={0.75}/>
             </RoundedBox>
         );
     }

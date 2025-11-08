@@ -8,6 +8,16 @@
     min-height: 300px;
 }
 
+.intro-section {
+    margin-top: 12rem;
+}
+
+@media (max-width: 640px) {
+    .intro-section {
+        margin-top: 8rem;
+    }
+}
+
 .intro-container:hover {
     transform: scale(1.025);
 }
