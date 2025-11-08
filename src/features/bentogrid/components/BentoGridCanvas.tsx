@@ -24,7 +24,7 @@ export const BentoGridCanvas = () => {
     }, []);
 
     const handlePointerLeave = useCallback(() => {
-        document.body.style.cursor = 'default';
+        document.body.style.cursor = 'auto';
         selectedRef.current = false;
     }, []);
 

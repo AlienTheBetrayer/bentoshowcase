@@ -1,7 +1,6 @@
 import gsap from 'gsap';
-import { AnimatePresence } from 'motion/react';
 import { useEffect } from 'react';
-import { createPortal } from 'react-dom';
+import { usePopup } from '../../../../../hooks/usePopup';
 import { BentoGridCanvas } from '../../../../bentogrid/components/BentoGridCanvas';
 import { BentoSelectedCard } from '../../../../bentogrid/components/BentoSelectedCard';
 import { useBentoContext } from '../../../../bentogrid/context/BentoContext';
@@ -30,25 +29,24 @@ export const GridSection = () => {
         }
     }, [loadingState.hasHeaderFinished]);
 
-    useEffect(() => {}, [state.selectedIdx]);
+    const cardPopup = usePopup(
+        <BentoSelectedCard
+            onInteract={() => dispatch({ type: 'SELECT_BLOCK', idx: false })}
+            card={
+                state.boxes.find((box) => box.idx === state.selectedIdx)
+                    ?.content
+            }
+        />,
+        () => dispatch({ type: 'SELECT_BLOCK', idx: false })
+    );
+
+    useEffect(() => {
+        cardPopup.setIsShown(state.selectedIdx !== false);
+    }, [state.selectedIdx]);
 
     return (
         <section className='section grid-section' style={{ marginTop: '4rem' }}>
-            {createPortal(
-                <AnimatePresence>
-                    {state.selectedIdx !== false && (
-                        <BentoSelectedCard
-                        onInteract={() => dispatch({ type: 'SELECT_BLOCK', idx: false})}
-                            card={
-                                state.boxes.find(
-                                    (box) => box.idx === state.selectedIdx
-                                )?.content!
-                            }
-                        />
-                    )}
-                </AnimatePresence>,
-                document.body
-            )}
+            {cardPopup.render()}
 
             <div className='grid-section-border'>
                 <BentoGridCanvas />
