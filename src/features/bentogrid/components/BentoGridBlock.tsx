@@ -4,23 +4,33 @@ import type { BentoGridBox } from '../context/types/BentoTypes';
 
 interface Props {
     box: BentoGridBox;
-    onPointerEnter?: () => void;
-    onPointerLeave?: () => void;
+    onPointerEnter?: (idx: number) => void;
+    onPointerLeave?: (idx: number) => void;
+    onClick?: (idx: number) => void;
 }
 
 export const BentoGridBlock = React.memo(
-    ({ box, onPointerEnter, onPointerLeave }: Props) => {
+    ({ box, onPointerEnter, onPointerLeave, onClick }: Props) => {
         return (
             <RoundedBox
                 position={[...box.position]}
                 args={[...box.size]}
+                radius={0.3}
+                smoothness={10}
+                receiveShadow
+                castShadow
+                // events
                 onPointerEnter={(e) => {
                     e.stopPropagation();
-                    onPointerEnter?.();
+                    onPointerEnter?.(box.idx);
                 }}
                 onPointerLeave={(e) => {
                     e.stopPropagation();
-                    onPointerLeave?.();
+                    onPointerLeave?.(box.idx);
+                }}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onClick?.(box.idx);
                 }}
             >
                 <meshPhysicalMaterial />

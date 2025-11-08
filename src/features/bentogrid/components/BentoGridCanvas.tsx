@@ -3,21 +3,34 @@ import './BentoGridCanvas.css';
 
 import { Center, OrbitControls } from '@react-three/drei';
 import { motion } from 'motion/react';
-import { useCallback } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useBentoContext } from '../context/BentoContext';
 import { BentoGridBlock } from './BentoGridBlock';
+import { BentoGridSelection } from './BentoGridSelection';
 
 export const BentoGridCanvas = () => {
+    // state
+    const [state, dispatch] = useBentoContext();
+
+    // hover edges
+    const selectedRef = useRef<number | false>(false);
+    const [selectedOnce, setSelectedOnce] = useState<boolean>(false);
+
     // handling functions (preventing re-renders)
-    const handlePointerEnter = useCallback(() => {
+    const handlePointerEnter = useCallback((idx: number) => {
+        if (selectedOnce === false) setSelectedOnce(true);
         document.body.style.cursor = 'pointer';
+        selectedRef.current = idx;
     }, []);
 
     const handlePointerLeave = useCallback(() => {
         document.body.style.cursor = 'default';
+        selectedRef.current = false;
     }, []);
 
-    const [state, dispatch] = useBentoContext();
+    const handleClick = useCallback((idx: number) => {
+        dispatch({ type: 'SELECT_BLOCK', idx: idx });
+    }, []);
 
     return (
         <motion.div className='bento-grid-canvas-container'>
@@ -33,18 +46,26 @@ export const BentoGridCanvas = () => {
                 }}
                 gl={{ alpha: true }}
             >
-                <pointLight position={[-4, 7, 5]} intensity={128} />
-                <hemisphereLight />
+                <pointLight position={[-3, 10, 3]} intensity={128} />
+                <ambientLight intensity={0.1} />
 
                 <Center>
-                    {state.boxes.map((box, idx) => (
+                    {state.boxes.map((box) => (
                         <BentoGridBlock
                             box={box}
-                            key={idx}
+                            key={box.idx}
                             onPointerEnter={handlePointerEnter}
                             onPointerLeave={handlePointerLeave}
+                            onClick={handleClick}
                         />
                     ))}
+
+                    {selectedOnce && (
+                        <BentoGridSelection
+                            boxes={state.boxes}
+                            selectedRef={selectedRef}
+                        />
+                    )}
                 </Center>
 
                 <OrbitControls enableZoom={false} />
