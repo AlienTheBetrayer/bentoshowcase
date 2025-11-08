@@ -1,9 +1,9 @@
-header { 
+header {
     position: fixed;
     width: 100%;
     margin: 1rem auto;
     left: 50%;
-    transform: translateX(-50%);
+    z-index: 2;
 }
 
 nav {
@@ -15,10 +15,18 @@ nav {
 
     border-radius: 20px;
     backdrop-filter: blur(12px);
-    background: linear-gradient(246deg, var(--background-3-transparent), var(--background-6-transparent));
+    background: linear-gradient(
+        246deg,
+        var(--background-3-transparent),
+        var(--background-6-transparent)
+    );
     transition: 0.15s all ease;
 }
 
 header:hover nav {
-    background: linear-gradient(200deg, var(--background-3-transparent), var(--background-7-transparent));
+    background: linear-gradient(
+        200deg,
+        var(--background-3-transparent),
+        var(--background-7-transparent)
+    );
 }

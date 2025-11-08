@@ -1,7 +1,7 @@
 import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 import { useLoadingContext } from '../../loading/context/LoadingContext';
 import { headerSize } from '../components/Header';
-import gsap from 'gsap';
 
 export const useHeaderAnimation = () => {
     const [loadingState, setLoadingState] = useLoadingContext();
@@ -20,6 +20,7 @@ export const useHeaderAnimation = () => {
 
         gsap.timeline()
             .to('header', {
+                xPercent: -50,
                 y: 0,
                 duration: 0.75,
             })

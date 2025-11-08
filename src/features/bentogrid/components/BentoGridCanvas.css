@@ -1,5 +1,6 @@
 .bento-grid-canvas-container {
+    display: grid;
+    place-items: center;
     width: 100%;
-    min-height: 800px;
-    background-color: blue;
+    height: 100%;
 }

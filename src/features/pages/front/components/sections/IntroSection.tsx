@@ -78,14 +78,16 @@ export const IntroSection = () => {
     ];
 
     return (
-        loadingState.hasHeaderFinished && (
-            <section className='section' style={{ marginTop: '8rem' }}>
-                <div className='intro-container'>
-                    <AnimatedText as='h1' text={h1Text} duration={8} />
-                    <AnimatedText as='p' text={p1Text} delay={1.5} />
-                    <AnimatedText as='p' text={p2Text} delay={7.5} />
-                </div>
-            </section>
-        )
+        <section className='section' style={{ marginTop: '8rem' }}>
+            <div className='intro-container'>
+                {loadingState.hasHeaderFinished && (
+                    <>
+                        <AnimatedText as='h1' text={h1Text} duration={8} />
+                        <AnimatedText as='p' text={p1Text} delay={1.5} />
+                        <AnimatedText as='p' text={p2Text} delay={7.5} />
+                    </>
+                )}
+            </div>
+        </section>
     );
 };

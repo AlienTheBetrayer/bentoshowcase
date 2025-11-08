@@ -6,6 +6,7 @@ import {
     useLoadingContext,
 } from '../../../loading/context/LoadingContext';
 import './FrontPage.css';
+import { GridSection } from './sections/GridSection';
 import { IntroSection } from './sections/IntroSection';
 
 import { motion } from 'motion/react';
@@ -14,12 +15,13 @@ export const FrontPage = () => {
     return (
         <LoadingProvider>
             <main className='page'>
-                <div style={{ display: 'grid', zIndex: '1' }}>
+                <div style={{ display: 'grid', zIndex: '1', gap: '2rem' }}>
                     <FrontPageBackground />
                     <Loading />
 
                     <Header />
                     <IntroSection />
+                    <GridSection/>
                 </div>
 
                 <motion.div
@@ -27,6 +29,7 @@ export const FrontPage = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1, duration: 2 }}
+                    style={{ width: '100%', height: '100%' }}
                 >
                     <BackgroundCanvas />
                 </motion.div>

@@ -5,6 +5,7 @@
     text-align: center;
     margin: 0 auto;
     transition: 0.3s all ease-in-out;
+    min-height: 300px;
 }
 
 .intro-container:hover {

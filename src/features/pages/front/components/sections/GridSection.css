@@ -1,0 +1,6 @@
+.grid-section {
+    min-height: 800px;
+    border-radius: 128px;
+    backdrop-filter: blur(4px);
+    overflow: hidden;
+}

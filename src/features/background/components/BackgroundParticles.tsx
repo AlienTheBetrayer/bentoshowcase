@@ -35,10 +35,9 @@ export const BackgroundParticles = ({ pointer }: Props) => {
                         three.viewport.width -
                     three.viewport.width / 2,
                 y: -(
-                    (pointer.cursor.current.y / three.size.height) *
+                    ((pointer.cursor.current.y + window.scrollY) / three.size.height) *
                         three.viewport.height -
-                    three.viewport.height / 2 +
-                    window.scrollY
+                    three.viewport.height / 2
                 ),
             };
 
