@@ -4,6 +4,8 @@ import type { BentoGridBox } from '../../context/types/BentoTypes';
 import './BentoSelectedCard.css';
 import { BentoSelectedCardCanvas } from './BentoSelectedCardCanvas';
 
+import cursorImg from '../../assets/cursor.svg';
+
 interface Props {
     box: BentoGridBox | undefined;
     onInteract?: () => void;
@@ -19,11 +21,23 @@ export const BentoSelectedCard = ({ box, onInteract }: Props) => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                 >
-                    <motion.div className='bento-selected-card'>
-                        <div style={{ flex: '1'}}>
-
+                    <motion.div
+                        className='bento-selected-card'
+                        style={{ cursor: 'grab' }}
+                    >
+                        <img
+                            src={cursorImg}
+                            alt='hover'
+                            style={{
+                                position: 'absolute',
+                                left: '1rem',
+                                top: '1rem',
+                                width: '1.5rem',
+                                height: '1.5rem',
+                                filter: 'invert(0.5)',
+                            }}
+                        />
                         <BentoSelectedCardCanvas box={box} />
-                        </div>
                     </motion.div>
 
                     <motion.div className='bento-selected-card bento-selected-card-content'>
