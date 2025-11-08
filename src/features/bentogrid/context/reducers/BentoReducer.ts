@@ -1,6 +1,6 @@
 import type { BentoData } from '../types/BentoTypes';
 
-export type BentoReducerAction = { type: 'SELECT_BLOCK'; idx: number };
+export type BentoReducerAction = { type: 'SELECT_BLOCK'; idx: number | false };
 
 export const BentoReducer = (
     state: BentoData,
@@ -8,6 +8,6 @@ export const BentoReducer = (
 ): BentoData => {
     switch (action.type) {
         case 'SELECT_BLOCK':
-            return state;
+            return { ...state, selectedIdx: action.idx };
     }
 };

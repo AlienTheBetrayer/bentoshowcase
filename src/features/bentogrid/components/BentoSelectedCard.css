@@ -1,0 +1,67 @@
+/* container & media queries */
+.bento-selected-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.293);
+    backdrop-filter: blur(4px);
+    z-index: 11;
+}
+
+@media (max-width: 768px) {
+    .bento-selected-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 640px) {
+    .bento-selected-container {
+        padding: 0.5rem;
+    }
+}
+
+/* first card */
+.bento-selected-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    min-height: 400px;
+
+    background-color: var(--background);
+    border: 2px solid var(--background-3);
+    border-radius: 16px;
+}
+
+@media (max-width: 768px) {
+    .bento-selected-card {
+        max-width: 400px;
+        min-height: 200px;
+    }
+}
+
+/* second card */
+.bento-selected-card-content {
+    max-width: 600px;
+    min-height: 400px;
+}
+
+/* card parts (works for both) */
+.bento-selected-card-topline {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 2px solid var(--background-3);
+}
+
+.bento-selected-card-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1rem;
+}

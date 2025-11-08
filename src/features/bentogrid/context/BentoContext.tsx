@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
+import { useBentoHotkeys } from './hooks/useBentoHotkeys';
 import { BentoInitial } from './initial/BentoInitial';
 import { BentoReducer, type BentoReducerAction } from './reducers/BentoReducer';
 import type { BentoData } from './types/BentoTypes';
@@ -13,6 +14,8 @@ interface Props {
 
 export const BentoProvider = ({ children }: Props) => {
     const [state, dispatch] = useReducer(BentoReducer, BentoInitial);
+
+    useBentoHotkeys(dispatch);
 
     return (
         <BentoContext.Provider value={[state, dispatch]}>
