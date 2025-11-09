@@ -4,6 +4,7 @@ import type { BentoGridBox } from '../../context/types/BentoTypes';
 import './BentoSelectedCard.css';
 import { BentoSelectedCardCanvas } from './BentoSelectedCardCanvas';
 
+import { useState } from 'react';
 import cursorImg from '../../assets/cursor.svg';
 
 interface Props {
@@ -12,16 +13,26 @@ interface Props {
 }
 
 export const BentoSelectedCard = ({ box, onInteract }: Props) => {
+    const [hasAnimationFinished, setHasAnimationFinished] =
+        useState<boolean>(false);
+
     return (
         <AnimatePresence>
             {box !== undefined && (
                 <motion.div
                     className='bento-selected-container'
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0 }}
+                    transition={{
+                        duration: 0.5,
+                        onComplete: () => {
+                            if (hasAnimationFinished === false)
+                                setHasAnimationFinished(true);
+                        },
+                    }}
                 >
-                    <motion.div
+                    <div
                         className='bento-selected-card'
                         style={{ cursor: 'grab' }}
                     >
@@ -37,10 +48,14 @@ export const BentoSelectedCard = ({ box, onInteract }: Props) => {
                                 filter: 'invert(0.5)',
                             }}
                         />
-                        <BentoSelectedCardCanvas box={box} />
-                    </motion.div>
 
-                    <motion.div className='bento-selected-card bento-selected-card-content'>
+                        <BentoSelectedCardCanvas
+                            box={box}
+                            key={String(hasAnimationFinished)}
+                        />
+                    </div>
+
+                    <div className='bento-selected-card bento-selected-card-content'>
                         <div className='bento-selected-card-topline'>
                             <h4>{box.content.title}</h4>
                             <Button
@@ -52,9 +67,13 @@ export const BentoSelectedCard = ({ box, onInteract }: Props) => {
                         </div>
 
                         <div className='bento-selected-card-main'>
-                            <p>{box.content.description}</p>
+                            <p
+                                dangerouslySetInnerHTML={{
+                                    __html: box.content.description,
+                                }}
+                            />
                         </div>
-                    </motion.div>
+                    </div>
                 </motion.div>
             )}
         </AnimatePresence>

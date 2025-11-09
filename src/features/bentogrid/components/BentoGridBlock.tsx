@@ -63,7 +63,7 @@ export const BentoGridBlock = React.memo(
             >
                 <boxGeometry args={[size[0], size[1], size[2]]} />
                 <meshPhysicalMaterial
-                    metalness={0.95}
+                    metalness={0.99}
                     roughness={0}
                     color='#fff'
                     transparent
