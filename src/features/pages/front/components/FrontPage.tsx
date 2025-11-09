@@ -12,6 +12,7 @@ import { IntroSection } from './sections/IntroSection';
 
 import { motion } from 'motion/react';
 import { StackSection } from './sections/StackSection';
+import { Footer } from '../../../footer/components/Footer';
 
 export const FrontPage = () => {
     return (
@@ -23,9 +24,13 @@ export const FrontPage = () => {
                         <Loading />
 
                         <Header />
+
                         <IntroSection />
                         <GridSection />
                         <StackSection/>
+
+                        <div style={{ marginTop: '6rem' }}/>
+                        <Footer/>
                     </div>
 
                     <motion.div

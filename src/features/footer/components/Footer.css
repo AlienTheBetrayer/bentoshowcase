@@ -1,0 +1,25 @@
+footer {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    z-index: 2;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 95%;
+    max-width: 512px;
+    margin: 1rem auto;
+    height: 3.5rem;
+    padding: 0 1rem;
+
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    background: linear-gradient(
+        46deg,
+        var(--background-3-transparent),
+        var(--background-6-transparent)
+    );
+}
