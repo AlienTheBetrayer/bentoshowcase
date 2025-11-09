@@ -59,7 +59,7 @@ const BentoSelectedCardCanvasAberration = React.memo(
         }, []);
 
         useFrame(() => {
-            const targetOffset = isHoveredRef.current ? 0.3 : 0;
+            const targetOffset = isHoveredRef.current ? 0.05 : 0;
             if (aberrationRef.current) {
                 aberrationRef.current.offset.x +=
                     (targetOffset - aberrationRef.current.offset.x) * 0.1;

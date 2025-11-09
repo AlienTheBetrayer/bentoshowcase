@@ -10,8 +10,8 @@ interface Props {
 export const BentoSelectedCardReplica = ({ box }: Props) => {
     const boxRef = useRef<Mesh>(null);
 
-    useFrame(state => {
-        if(boxRef.current) {
+    useFrame((state) => {
+        if (boxRef.current) {
             const t = state.clock.getElapsedTime();
 
             // rotation
@@ -19,16 +19,14 @@ export const BentoSelectedCardReplica = ({ box }: Props) => {
             boxRef.current.rotation.x = Math.sin(t) / 10;
 
             // scale
-            const scale = 1 + Math.sin(t) / 10; 
+            const scale = 1 + Math.sin(t) / 10;
             boxRef.current.scale.set(scale, scale, scale);
         }
     });
 
     return (
         <mesh ref={boxRef} position={[0, 0, 0]}>
-            <boxGeometry
-                args={box.size}
-            />
+            <boxGeometry args={box.size} />
             <meshNormalMaterial />
         </mesh>
     );

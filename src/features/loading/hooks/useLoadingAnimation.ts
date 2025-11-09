@@ -7,6 +7,11 @@ export const useLoadingAnimation = () => {
     const [loadingState, setLoadingState] = useLoadingContext();
 
     useGSAP(() => {
+        setLoadingState((prev) => ({
+            ...prev,
+            hasInitialFinished: true,
+        }));
+
         if (loadingState.hasInitialFinished) return;
 
         gsap.to('.loading-element', {

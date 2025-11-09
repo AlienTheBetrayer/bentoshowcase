@@ -17,6 +17,9 @@ export const BentoGridCanvas = () => {
     const selectedRef = useRef<number | false>(false);
     const [selectedOnce, setSelectedOnce] = useState<boolean>(false);
 
+    const clickTimeout = useRef<number>(-1);
+    const canClick = useRef<boolean>(true);
+
     // handling functions (preventing re-renders)
     const handlePointerEnter = useCallback((idx: number) => {
         if (selectedOnce === false) setSelectedOnce(true);
@@ -24,13 +27,24 @@ export const BentoGridCanvas = () => {
         selectedRef.current = idx;
     }, []);
 
-    const handlePointerLeave = useCallback(() => {
+    const handlePointerLeave = useCallback((_idx: number) => {
         document.body.style.cursor = 'auto';
         selectedRef.current = false;
     }, []);
 
-    const handleClick = useCallback((idx: number) => {
-        dispatch({ type: 'SELECT_BLOCK', idx: idx });
+    const handlePointerDown = useCallback((_idx: number) => {
+        clickTimeout.current = setTimeout(() => {
+            canClick.current = false;
+        }, 300);
+    }, []);
+
+    const handlePointerUp = useCallback((idx: number) => {
+        clearTimeout(clickTimeout.current);
+        if (canClick.current === false) {
+            canClick.current = true;
+        } else {
+            dispatch({ type: 'SELECT_BLOCK', idx: idx });
+        }
     }, []);
 
     // theme
@@ -61,7 +75,8 @@ export const BentoGridCanvas = () => {
                             key={box.idx}
                             onPointerEnter={handlePointerEnter}
                             onPointerLeave={handlePointerLeave}
-                            onClick={handleClick}
+                            onPointerDown={handlePointerDown}
+                            onPointerUp={handlePointerUp}
                             theme={theme}
                         />
                     ))}

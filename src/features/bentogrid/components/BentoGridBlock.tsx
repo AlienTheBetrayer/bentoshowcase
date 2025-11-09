@@ -9,12 +9,22 @@ interface Props {
     box: BentoGridBox;
     onPointerEnter?: (idx: number) => void;
     onPointerLeave?: (idx: number) => void;
+    onPointerDown?: (idx: number) => void;
+    onPointerUp?: (idx: number) => void;
     onClick?: (idx: number) => void;
     theme: Theme;
 }
 
 export const BentoGridBlock = React.memo(
-    ({ box, onPointerEnter, onPointerLeave, onClick, theme }: Props) => {
+    ({
+        box,
+        onPointerEnter,
+        onPointerLeave,
+        onPointerDown,
+        onPointerUp,
+        onClick,
+        theme,
+    }: Props) => {
         const isMobile = useMediaQuery(768);
 
         let size = [...box.size];
@@ -37,6 +47,14 @@ export const BentoGridBlock = React.memo(
                 onPointerLeave={(e) => {
                     e.stopPropagation();
                     onPointerLeave?.(box.idx);
+                }}
+                onPointerDown={(e) => {
+                    e.stopPropagation();
+                    onPointerDown?.(box.idx);
+                }}
+                onPointerUp={(e) => {
+                    e.stopPropagation();
+                    onPointerUp?.(box.idx);
                 }}
                 onClick={(e) => {
                     e.stopPropagation();
