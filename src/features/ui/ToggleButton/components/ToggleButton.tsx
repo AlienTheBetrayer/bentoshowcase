@@ -14,7 +14,7 @@ export const ToggleButton = ({ value, onChange }: Props) => {
 
     return (
         <button
-            className={`toggle-button ${val ? 'toggle-button-toggled' : ''}`}
+            className='toggle-button'
             style={{ justifyContent: !val ? 'flex-start' : 'flex-end' }}
             onClick={() => {
                 onChange?.(!val);

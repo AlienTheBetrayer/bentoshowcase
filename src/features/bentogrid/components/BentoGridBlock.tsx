@@ -43,7 +43,7 @@ export const BentoGridBlock = React.memo(
                 />
                 <Billboard>
                     <Text
-                        fontSize={0.2}
+                        fontSize={0.3}
                         color={theme && CSSVariable('--foreground-last')}
                         anchorX='center'
                         anchorY='middle'

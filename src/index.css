@@ -18,6 +18,11 @@
     --background-8: hsl(0, 0%, 35%);
     --background-9: hsl(0, 0%, 40%);
     --background-10: hsl(0, 0%, 45%);
+    --background-11: hsl(0, 0%, 50%);
+    --background-12: hsl(0, 0%, 55%);
+    --background-13: hsl(0, 0%, 60%);
+    --background-14: hsl(0, 0%, 65%);
+    --background-15: hsl(0, 0%, 70%);
 
     /* transparent background */
     --background-transparent: hsla(0, 0%, 0%, 0.4);
@@ -30,6 +35,11 @@
     --background-8-transparent: hsla(0, 0%, 35%, 0.4);
     --background-9-transparent: hsla(0, 0%, 40%, 0.4);
     --background-10-transparent: hsla(0, 0%, 45%, 0.4);
+    --background-11-transparent: hsla(0, 0%, 50%, 0.4);
+    --background-12-transparent: hsla(0, 0%, 55%, 0.4);
+    --background-13-transparent: hsla(0, 0%, 60%, 0.4);
+    --background-14-transparent: hsla(0, 0%, 65%, 0.4);
+    --background-15-transparent: hsla(0, 0%, 70%, 0.4);
 
     /* foreground */
     --foreground: hsl(214, 7%, 55%);
@@ -53,6 +63,11 @@
     --background-8: hsl(0, 0%, 65%);
     --background-9: hsl(0, 0%, 60%);
     --background-10: hsl(0, 0%, 55%);
+    --background-11: hsl(0, 0%, 50%);
+    --background-12: hsl(0, 0%, 45%);
+    --background-13: hsl(0, 0%, 40%);
+    --background-14: hsl(0, 0%, 35%);
+    --background-15: hsl(0, 0%, 30%);
 
     /* transparent background */
     --background-transparent: hsla(0, 0%, 100%, 0.4);
@@ -65,6 +80,11 @@
     --background-8-transparent: hsla(0, 0%, 65%, 0.4);
     --background-9-transparent: hsla(0, 0%, 60%, 0.4);
     --background-10-transparent: hsla(0, 0%, 55%, 0.4);
+    --background-11-transparent: hsla(0, 0%, 50%, 0.4);
+    --background-12-transparent: hsla(0, 0%, 45%, 0.4);
+    --background-13-transparent: hsla(0, 0%, 40%, 0.4);
+    --background-14-transparent: hsla(0, 0%, 35%, 0.4);
+    --background-15-transparent: hsla(0, 0%, 30%, 0.4);
 
     /* foreground */
     --foreground: hsl(213, 11%, 55%);
