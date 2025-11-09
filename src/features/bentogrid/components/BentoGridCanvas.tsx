@@ -50,7 +50,8 @@ export const BentoGridCanvas = () => {
                 }}
                 gl={{ alpha: true }}
             >
-                <pointLight position={[-3, 5, 3]} intensity={256} />
+                <pointLight position={[-8, -4, 4]} intensity={256} />
+                <pointLight position={[8, 4, -4]} intensity={256} />
                 <ambientLight intensity={0.1} />
 
                 <Center>
