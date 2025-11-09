@@ -4,6 +4,7 @@ import './BentoGridCanvas.css';
 import { Center, OrbitControls } from '@react-three/drei';
 import { motion } from 'motion/react';
 import { useCallback, useRef, useState } from 'react';
+import { useLocalStore } from '../../../zustand/localStore';
 import { useBentoContext } from '../context/BentoContext';
 import { BentoGridBlock } from './BentoGridBlock';
 import { BentoGridSelection } from './BentoGridSelection';
@@ -32,6 +33,9 @@ export const BentoGridCanvas = () => {
         dispatch({ type: 'SELECT_BLOCK', idx: idx });
     }, []);
 
+    // theme
+    const { theme } = useLocalStore();
+
     return (
         <motion.div className='bento-grid-canvas-container'>
             <Canvas
@@ -57,6 +61,7 @@ export const BentoGridCanvas = () => {
                             onPointerEnter={handlePointerEnter}
                             onPointerLeave={handlePointerLeave}
                             onClick={handleClick}
+                            theme={theme}
                         />
                     ))}
 
@@ -64,6 +69,7 @@ export const BentoGridCanvas = () => {
                         <BentoGridSelection
                             boxes={state.boxes}
                             selectedRef={selectedRef}
+                            theme={theme}
                         />
                     )}
                 </Center>

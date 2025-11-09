@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-type Theme = 'dark' | 'light';
+export type Theme = 'dark' | 'light';
 
 export interface LocalStore {
     // values
