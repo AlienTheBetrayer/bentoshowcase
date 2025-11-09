@@ -1,8 +1,6 @@
 import { Billboard, Text } from '@react-three/drei';
 import React from 'react';
 import { useMediaQuery } from '../../../hooks/useMediaQuery';
-import { CSSVariable } from '../../../utils/CSSVariable';
-import { type Theme } from '../../../zustand/localStore';
 import type { BentoGridBox } from '../context/types/BentoTypes';
 
 interface Props {
@@ -12,7 +10,6 @@ interface Props {
     onPointerDown?: (idx: number) => void;
     onPointerUp?: (idx: number) => void;
     onClick?: (idx: number) => void;
-    theme: Theme;
 }
 
 export const BentoGridBlock = React.memo(
@@ -23,7 +20,6 @@ export const BentoGridBlock = React.memo(
         onPointerDown,
         onPointerUp,
         onClick,
-        theme,
     }: Props) => {
         const isMobile = useMediaQuery(768);
 
@@ -71,8 +67,8 @@ export const BentoGridBlock = React.memo(
                 />
                 <Billboard>
                     <Text
-                        fontSize={isMobile ? 0.2 : 0.3}
-                        color={theme && CSSVariable('--foreground-last')}
+                        fontSize={isMobile ? 0.2 : 0.4}
+                        color='#fff'
                         anchorX='center'
                         anchorY='middle'
                         position={[0, 0, 0]}

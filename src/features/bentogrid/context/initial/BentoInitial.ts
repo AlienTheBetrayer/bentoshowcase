@@ -33,7 +33,7 @@ export const BentoInitial: BentoData = {
 
         {
             idx: 3,
-            position: [0, 2, 0],
+            position: [2, 2, 1],
             size: [2, 2, 2],
             content: {
                 title: 'hi',
@@ -81,6 +81,16 @@ export const BentoInitial: BentoData = {
             idx: 8,
             position: [0, 4, 2],
             size: [2, 2, 2],
+            content: {
+                title: 'hi',
+                description: 'bye',
+            },
+        },
+
+            {
+            idx: 9,
+            position: [4, 0, 2],
+            size: [2, 6, 2],
             content: {
                 title: 'hi',
                 description: 'bye',

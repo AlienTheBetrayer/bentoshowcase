@@ -13,6 +13,9 @@ export const BentoGridCanvas = () => {
     // state
     const [state, dispatch] = useBentoContext();
 
+    // theme / zustand store
+    const { theme } = useLocalStore();
+
     // hover edges
     const selectedRef = useRef<number | false>(false);
     const [selectedOnce, setSelectedOnce] = useState<boolean>(false);
@@ -20,7 +23,7 @@ export const BentoGridCanvas = () => {
     const clickTimeout = useRef<number>(-1);
     const canClick = useRef<boolean>(true);
 
-    // handling functions (preventing re-renders)
+    // block handlers
     const handlePointerEnter = useCallback((idx: number) => {
         if (selectedOnce === false) setSelectedOnce(true);
         document.body.style.cursor = 'pointer';
@@ -32,26 +35,32 @@ export const BentoGridCanvas = () => {
         selectedRef.current = false;
     }, []);
 
-    const handlePointerDown = useCallback((_idx: number) => {
+    const handleClick = useCallback((idx: number) => {
+        if (canClick.current === true)
+            dispatch({ type: 'SELECT_BLOCK', idx: idx });
+    }, []);
+
+    // canvas handlers
+    const handlePointerDown = useCallback(() => {
         clickTimeout.current = setTimeout(() => {
             canClick.current = false;
-        }, 300);
+        }, 150);
     }, []);
 
-    const handlePointerUp = useCallback((idx: number) => {
+    const handlePointerUp = useCallback(() => {
         clearTimeout(clickTimeout.current);
-        if (canClick.current === false) {
-            canClick.current = true;
-        } else {
-            dispatch({ type: 'SELECT_BLOCK', idx: idx });
-        }
+        if (canClick.current === false)
+            setTimeout(() => {
+                canClick.current = true;
+            }, 50);
     }, []);
-
-    // theme
-    const { theme } = useLocalStore();
 
     return (
-        <motion.div className='bento-grid-canvas-container'>
+        <motion.div
+            className='bento-grid-canvas-container'
+            onPointerDown={handlePointerDown}
+            onPointerUp={handlePointerUp}
+        >
             <Canvas
                 style={{
                     width: '100%',
@@ -75,9 +84,7 @@ export const BentoGridCanvas = () => {
                             key={box.idx}
                             onPointerEnter={handlePointerEnter}
                             onPointerLeave={handlePointerLeave}
-                            onPointerDown={handlePointerDown}
-                            onPointerUp={handlePointerUp}
-                            theme={theme}
+                            onClick={handleClick}
                         />
                     ))}
 
