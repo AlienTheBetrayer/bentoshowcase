@@ -18,7 +18,7 @@ export const BackgroundParticles = ({ pointer }: Props) => {
     const instancesRef = useRef<InstancedMesh>(null);
     const dummy = new Object3D();
 
-    const gap = 0.2;
+    const gap = 0.15;
     const size = useMemo(() => {
         return {
             rows: Math.ceil(three.viewport.height / gap) + 1,
@@ -35,7 +35,8 @@ export const BackgroundParticles = ({ pointer }: Props) => {
                         three.viewport.width -
                     three.viewport.width / 2,
                 y: -(
-                    ((pointer.cursor.current.y + window.scrollY) / three.size.height) *
+                    ((pointer.cursor.current.y + window.scrollY) /
+                        three.size.height) *
                         three.viewport.height -
                     three.viewport.height / 2
                 ),
@@ -55,9 +56,9 @@ export const BackgroundParticles = ({ pointer }: Props) => {
                     const dy = internalPointer.y - y;
                     const m = Math.sqrt(dx * dx + dy * dy);
 
-                    if (m < 3) {
-                        const dm = 3 - m;
-                        const n = noise.noise(x, y, t / 2) * 5;
+                    if (m < 1) {
+                        const dm = 1 - m;
+                        const n = noise.noise(x, y, t / 2) * 20;
                         dummy.scale.set(1 + dm * n, 1 + dm * n, 1 + dm * n);
                         dummy.position.set(x, y, n * 0.15 * dm);
                     } else {

@@ -34,5 +34,5 @@ export const BackgroundLight = ({ pointer }: Props) => {
         }
     });
 
-    return <pointLight ref={lightRef} intensity={512} />;
+    return <pointLight ref={lightRef} intensity={256} />;
 };

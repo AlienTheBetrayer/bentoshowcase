@@ -11,19 +11,21 @@ import { GridSection } from './sections/GridSection';
 import { IntroSection } from './sections/IntroSection';
 
 import { motion } from 'motion/react';
+import { StackSection } from './sections/StackSection';
 
 export const FrontPage = () => {
     return (
         <LoadingProvider>
             <BentoProvider>
                 <main className='page'>
-                    <div style={{ display: 'grid', zIndex: '1', gap: '2rem' }}>
+                    <div style={{ display: 'grid', zIndex: '1', gap: '4rem' }}>
                         <FrontPageBackground />
                         <Loading />
 
                         <Header />
                         <IntroSection />
                         <GridSection />
+                        <StackSection/>
                     </div>
 
                     <motion.div
