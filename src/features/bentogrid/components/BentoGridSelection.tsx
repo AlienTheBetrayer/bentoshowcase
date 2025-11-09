@@ -27,19 +27,23 @@ export const BentoGridSelection = React.memo(
                 } else {
                     boxRef.current.visible = true;
 
-                    const box = boxes[selectedRef.current];
-                    let scaleFactor = 1.15 + Math.sin(t * 5) * 0.1;
+                    const box = boxes.find(
+                        (box) => box.idx === selectedRef.current
+                    );
+                    if (box) {
+                        let scaleFactor = 1.15 + Math.sin(t * 5) * 0.1;
 
-                    boxRef.current.scale.set(
-                        box.size[0] * scaleFactor,
-                        box.size[1] * scaleFactor,
-                        box.size[2] * scaleFactor
-                    );
-                    boxRef.current.position.set(
-                        box.position[0],
-                        box.position[1],
-                        box.position[2]
-                    );
+                        boxRef.current.scale.set(
+                            box.size[0] * scaleFactor,
+                            box.size[1] * scaleFactor,
+                            box.size[2] * scaleFactor
+                        );
+                        boxRef.current.position.set(
+                            box.position[0],
+                            box.position[1],
+                            box.position[2]
+                        );
+                    }
                 }
             }
         });

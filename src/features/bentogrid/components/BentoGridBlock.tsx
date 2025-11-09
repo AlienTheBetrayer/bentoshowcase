@@ -28,11 +28,15 @@ export const BentoGridBlock = React.memo(
             size[0] *= 0.7;
             size[1] *= 0.7;
             size[2] *= 0.7;
+        } else {
+            size[0] *= 0.95;
+            size[1] *= 0.95;
+            size[2] *= 0.95;
         }
 
         return (
             <mesh
-                position={[...box.position]}
+                position={box.position}
                 receiveShadow
                 castShadow
                 // events
