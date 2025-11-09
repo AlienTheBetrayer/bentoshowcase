@@ -2,6 +2,7 @@ import { Box, Edges } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import React, { useRef, type RefObject } from 'react';
 import type { Mesh } from 'three';
+import { useMediaQuery } from '../../../hooks/useMediaQuery';
 import { CSSVariable } from '../../../utils/CSSVariable';
 import { type Theme } from '../../../zustand/localStore';
 import type { BentoGridBox } from '../context/types/BentoTypes';
@@ -15,6 +16,7 @@ interface Props {
 export const BentoGridSelection = React.memo(
     ({ boxes, selectedRef, theme }: Props) => {
         const boxRef = useRef<Mesh>(null);
+        const isMobile = useMediaQuery(768);
 
         useFrame((state) => {
             if (boxRef.current) {
@@ -26,7 +28,7 @@ export const BentoGridSelection = React.memo(
                     boxRef.current.visible = true;
 
                     const box = boxes[selectedRef.current];
-                    const scaleFactor = 1.15 + Math.sin(t * 5) * 0.1;
+                    let scaleFactor = 1.15 + Math.sin(t * 5) * 0.1;
 
                     boxRef.current.scale.set(
                         box.size[0] * scaleFactor,
@@ -43,7 +45,14 @@ export const BentoGridSelection = React.memo(
         });
 
         return (
-            <Box ref={boxRef} args={[1, 1, 1]}>
+            <Box
+                ref={boxRef}
+                args={[
+                    isMobile ? 0.7 : 1,
+                    isMobile ? 0.7 : 1,
+                    isMobile ? 0.7 : 1,
+                ]}
+            >
                 <meshBasicMaterial transparent opacity={0} />
                 <Edges color={theme && CSSVariable('--foreground-last')} />
             </Box>
