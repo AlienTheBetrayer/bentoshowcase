@@ -1,6 +1,6 @@
 import { Instance, Instances } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { InstancedMesh, Object3D } from 'three';
 import { useCursorRef } from '../../../hooks/useCursorRef';
 
@@ -11,9 +11,10 @@ const noise = new ImprovedNoise();
 
 interface Props {
     pointer: ReturnType<typeof useCursorRef>;
+    onFpsChange?: (fps: number) => void;
 }
 
-export const BackgroundParticles = ({ pointer }: Props) => {
+export const BackgroundParticles = React.memo(({ pointer, onFpsChange }: Props) => {
     const three = useThree();
     const instancesRef = useRef<InstancedMesh>(null);
     const dummy = new Object3D();
@@ -26,7 +27,20 @@ export const BackgroundParticles = ({ pointer }: Props) => {
         };
     }, [gap, three.viewport.width, three.viewport.height]);
 
+    // fps checking
+    const frames = useRef<number>(0);
+    const last = useRef(performance.now());
+
     useFrame((state) => {
+        const now = performance.now();
+        frames.current++;
+
+        if (now - last.current >= 1000) {
+            onFpsChange?.(frames.current);
+            frames.current = 0;
+            last.current = now;
+        }
+
         if (instancesRef.current) {
             const t = state.clock.getElapsedTime();
             const internalPointer = {
@@ -87,4 +101,4 @@ export const BackgroundParticles = ({ pointer }: Props) => {
             ))}
         </Instances>
     );
-};
+});

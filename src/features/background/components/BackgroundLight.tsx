@@ -1,5 +1,5 @@
 import { useFrame, useThree } from '@react-three/fiber';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import type { PointLight } from 'three';
 import type { useCursorRef } from '../../../hooks/useCursorRef';
 
@@ -7,7 +7,7 @@ interface Props {
     pointer: ReturnType<typeof useCursorRef>;
 }
 
-export const BackgroundLight = ({ pointer }: Props) => {
+export const BackgroundLight = React.memo(({ pointer }: Props) => {
     const lightRef = useRef<PointLight>(null);
     const three = useThree();
 
@@ -20,7 +20,8 @@ export const BackgroundLight = ({ pointer }: Props) => {
                         three.viewport.width -
                     three.viewport.width / 2,
                 y: -(
-                    ((pointer.cursor.current.y + window.scrollY) / three.size.height) *
+                    ((pointer.cursor.current.y + window.scrollY) /
+                        three.size.height) *
                         three.viewport.height -
                     three.viewport.height / 2
                 ),
@@ -35,4 +36,4 @@ export const BackgroundLight = ({ pointer }: Props) => {
     });
 
     return <pointLight ref={lightRef} intensity={256} />;
-};
+});
