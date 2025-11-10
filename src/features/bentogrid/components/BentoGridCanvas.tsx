@@ -61,6 +61,7 @@ export const BentoGridCanvas = () => {
             onPointerDown={handlePointerDown}
             onPointerUp={handlePointerUp}
         >
+            
             <Canvas
                 style={{
                     width: '100%',
