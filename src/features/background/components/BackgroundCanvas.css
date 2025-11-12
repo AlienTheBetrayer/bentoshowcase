@@ -1,5 +1,16 @@
 .background-fps-warning {
     position: absolute;
-    left: 1rem;
-    top: 1rem;
+    padding: 0.5rem;
+    z-index: 1;
+    cursor: pointer;
+    border: transparent;
+    background-color: transparent;
+}
+
+.background-fps-warning:hover {
+    background-color: var(--background-3);
+}
+
+.background-fps-warning:active {
+    background-color: var(--background-5);
 }
