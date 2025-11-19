@@ -17,15 +17,19 @@ export const BackgroundCanvas = () => {
     // lag optimization
     const isMobile = useMediaQuery(640);
     const performanceTimeout = useRef<number | false>(false);
+    const dprTimeout = useRef<number | false>(false);
+    const [dpr, setDPR] = useState<number>(window.devicePixelRatio);
     const [isLagging, setIsLagging] = useState<boolean>(false);
     const [isLaggingDisabled, setIsLaggingDisabled] = useState<boolean>(false);
+    const isMac = /Mac|MacIntel|MacPPC|Mac68K/i.test(navigator.userAgent);
 
     return (
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
             {theme === 'dark' &&
                 isLagging &&
                 !isMobile &&
-                !isLaggingDisabled && (
+                !isLaggingDisabled &&
+                !isMac && (
                     <motion.button
                         className='background-fps-warning'
                         initial={{ opacity: 0 }}
@@ -41,11 +45,12 @@ export const BackgroundCanvas = () => {
                 )}
 
             <Canvas
-                style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
+                style={{ width: '100%', height: '100%', pointerEvents: 'none' }} dpr={dpr}
             >
                 {theme === 'dark' &&
                     !isMobile &&
-                    (!isLagging || isLaggingDisabled) && (
+                    (!isLagging || isLaggingDisabled) &&
+                    !isMac && (
                         <EffectComposer>
                             <Bloom
                                 emissiveThreshold={0}
@@ -57,14 +62,33 @@ export const BackgroundCanvas = () => {
                 <BackgroundParticles
                     pointer={pointer}
                     onFpsChange={(fps) => {
-                        if (fps < 20) {
-                            performanceTimeout.current = setTimeout(
-                                () => setIsLagging(true),
-                                3000
-                            );
-                        } else if (performanceTimeout.current !== false) {
-                            clearTimeout(performanceTimeout.current);
-                            performanceTimeout.current = false;
+                        if (fps < 30) {
+                            if (performanceTimeout.current === false) {
+                                performanceTimeout.current = setTimeout(
+                                    () => setIsLagging(true),
+                                    3000
+                                );
+                            }
+
+                            if (
+                                isLagging &&
+                                !isLaggingDisabled &&
+                                dprTimeout.current === false
+                            ) {
+                                dprTimeout.current = setTimeout(() => {
+                                    setDPR((prev) => prev / 2);
+                                    if (dprTimeout.current)
+                                        clearTimeout(dprTimeout.current);
+                                }, 3000);
+                            }
+                        } else {
+                            if (
+                                performanceTimeout.current &&
+                                dprTimeout.current
+                            ) {
+                                clearTimeout(performanceTimeout.current);
+                                clearTimeout(dprTimeout.current);
+                            }
                         }
                     }}
                 />
