@@ -11,4 +11,18 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    gap: 4%;
+}
+
+@media (max-width: 1024px) {
+    .cards-container {
+        gap: 2%;
+    }
+}
+
+@media (max-width: 768px) {
+    .cards-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
 }

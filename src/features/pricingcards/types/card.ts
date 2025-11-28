@@ -5,4 +5,5 @@ export interface PricingCardType {
         forWho: string;
     };
     price: number;
+    className?: string;
 }

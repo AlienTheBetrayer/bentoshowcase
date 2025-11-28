@@ -24,6 +24,7 @@ export const PricingCardsData: PricingCardType[] = [
             forWho: 'Designed for teams and small companies.',
         },
         price: 29,
+        className: 'business-card'
     },
     {
         title: 'Elite',
