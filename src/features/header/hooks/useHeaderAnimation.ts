@@ -7,7 +7,15 @@ export const useHeaderAnimation = () => {
     const [loadingState, setLoadingState] = useLoadingContext();
 
     useGSAP(() => {
-        if (loadingState.hasHeaderFinished) return;
+        if (loadingState.hasHeaderFinished) {
+            gsap.to('header', {
+                xPercent: -50,
+                y: 0,
+                maxWidth: `${headerSize}px`,
+                duration: 0,
+            });
+            return;
+        }
 
         if (!loadingState.hasInitialFinished) {
             gsap.to('header', {

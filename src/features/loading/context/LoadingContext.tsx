@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useSessionStore } from '../../../zustand/sessionStore';
 
 export interface LoadingData {
     hasInitialFinished: boolean;
@@ -21,6 +22,33 @@ export const LoadingProvider = ({ children }: Props) => {
         hasInitialFinished: false,
         hasHeaderFinished: false,
     });
+
+    const sessionStore = useSessionStore();
+
+    // syncing session store with our state
+    useEffect(() => {
+        if (
+            state.hasHeaderFinished &&
+            state.hasInitialFinished &&
+            !sessionStore.loaded
+        ) {
+            sessionStore.updateLoaded(true);
+        }
+    }, [state, sessionStore.loaded]);
+
+    // syncing our state with the session store
+    useEffect(() => {
+        if (
+            sessionStore.loaded &&
+            !(state.hasHeaderFinished || state.hasInitialFinished)
+        ) {
+            setState((prev) => ({
+                ...prev,
+                hasHeaderFinished: true,
+                hasInitialFinished: true,
+            }));
+        }
+    }, [sessionStore.loaded]);
 
     return (
         <LoadingContext.Provider value={[state, setState]}>

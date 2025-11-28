@@ -1,27 +1,21 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-interface LoadedInterface {
-    header: boolean;
-}
-
 interface SessionStore {
-    loaded: LoadedInterface;
+    loaded: boolean;
 
-    updateLoaded: (flag: Partial<LoadedInterface>) => void;
+    updateLoaded: (flag: boolean) => void;
 }
 
 export const useSessionStore = create<SessionStore>()(
     persist(
         (set) => ({
-            loaded: {
-                header: false,
-            },
+            loaded: false,
 
-            updateLoaded: (newLoaded: Partial<LoadedInterface>) => {
+            updateLoaded: (newLoaded: boolean) => {
                 set((state) => ({
                     ...state,
-                    loaded: { ...state.loaded, ...newLoaded },
+                    loaded: newLoaded,
                 }));
             },
         }),
