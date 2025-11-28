@@ -2,49 +2,45 @@ import { BackgroundCanvas } from '../../../background/components/BackgroundCanva
 import { BentoProvider } from '../../../bentogrid/context/BentoContext';
 import { Header } from '../../../header/components/Header';
 import { Loading } from '../../../loading/components/Loading';
-import {
-    LoadingProvider,
-    useLoadingContext,
-} from '../../../loading/context/LoadingContext';
+import { useLoadingContext } from '../../../loading/context/LoadingContext';
 import './FrontPage.css';
 import { GridSection } from './sections/GridSection';
 import { IntroSection } from './sections/IntroSection';
 
 import { motion } from 'motion/react';
 import { Footer } from '../../../footer/components/Footer';
+import { Page } from '../../../page/components/Page';
 import { StackSection } from './sections/StackSection';
 
 export const FrontPage = () => {
     return (
-        <LoadingProvider>
+        <Page>
             <BentoProvider>
-                <main className='page'>
-                    <div style={{ display: 'grid', zIndex: '1', gap: '4rem' }}>
-                        <FrontPageBackground />
-                        <Loading />
+                <div style={{ display: 'grid', zIndex: '1', gap: '4rem' }}>
+                    <FrontPageBackground />
+                    <Loading />
 
-                        <Header />
+                    <Header />
 
-                        <IntroSection />
-                        <GridSection />
-                        <StackSection />
+                    <IntroSection />
+                    <GridSection />
+                    <StackSection />
 
-                        <div style={{ marginTop: '6rem' }} />
-                        <Footer />
-                    </div>
+                    <div style={{ marginTop: '6rem' }} />
+                    <Footer />
+                </div>
 
-                    <motion.div
-                        className='front-background-wrapper'
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1, duration: 2 }}
-                        style={{ width: '100%', height: '100%' }}
-                    >
-                        <BackgroundCanvas />
-                    </motion.div>
-                </main>
+                <motion.div
+                    className='front-background-wrapper'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1, duration: 2 }}
+                    style={{ width: '100%', height: '100%' }}
+                >
+                    <BackgroundCanvas />
+                </motion.div>
             </BentoProvider>
-        </LoadingProvider>
+        </Page>
     );
 };
 

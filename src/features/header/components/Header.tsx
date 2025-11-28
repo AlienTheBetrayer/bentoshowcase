@@ -25,9 +25,11 @@ export const Header = () => {
         >
             <nav>
                 <LinkButton to='/home'>Home</LinkButton>
+                <LinkButton to='/pricing'>Pricing</LinkButton>
                 <ToggleButton
                     value={theme !== 'dark'}
                     onChange={() => toggleTheme()}
+                    style={{ marginLeft: 'auto' }}
                 />
             </nav>
         </motion.header>

@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import { FrontPage } from './features/pages/front/components/FrontPage';
+import { PricingPage } from './features/pages/pricing/PricingPage';
 
 export const GlobalRouter = createBrowserRouter([
     // front page
@@ -15,5 +16,9 @@ export const GlobalRouter = createBrowserRouter([
     {
         path: '/front',
         element: <FrontPage />,
+    },
+    {
+        path: '/pricing',
+        element: <PricingPage />,
     },
 ]);
