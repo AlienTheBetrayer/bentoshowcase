@@ -2,7 +2,6 @@ import { BackgroundCanvas } from '../../../background/components/BackgroundCanva
 import { BentoProvider } from '../../../bentogrid/context/BentoContext';
 import { Header } from '../../../header/components/Header';
 import { Loading } from '../../../loading/components/Loading';
-import { useLoadingContext } from '../../../loading/context/LoadingContext';
 import './FrontPage.css';
 import { GridSection } from './sections/GridSection';
 import { IntroSection } from './sections/IntroSection';
@@ -17,7 +16,6 @@ export const FrontPage = () => {
         <Page>
             <BentoProvider>
                 <div style={{ display: 'grid', zIndex: '1', gap: '4rem' }}>
-                    <FrontPageBackground />
                     <Loading />
 
                     <Header />
@@ -41,20 +39,5 @@ export const FrontPage = () => {
                 </motion.div>
             </BentoProvider>
         </Page>
-    );
-};
-
-const FrontPageBackground = () => {
-    const [loadingState] = useLoadingContext();
-
-    return (
-        <motion.div
-            className='front-background-wrapper-overlay'
-            initial={{ opacity: 1 }}
-            animate={{
-                opacity: loadingState.hasInitialFinished ? 0 : 1,
-            }}
-            transition={{ duration: 1 }}
-        />
     );
 };

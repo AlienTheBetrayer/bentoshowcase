@@ -1,23 +1,26 @@
 import js from '@eslint/js';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
-import { defineConfig, globalIgnores } from 'eslint/config';
-import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export default defineConfig([
-    globalIgnores(['dist']),
+export default [
+    js.configs.recommended,
+
+    // TypeScript recommended config
+    ...tseslint.configs.recommended.map((cfg) => ({
+        ...cfg,
+        rules: {
+            ...cfg.rules,
+            '@typescript-eslint/no-unused-vars': 'error',
+            'no-unused-vars': 'off',
+        },
+    })),
+
     {
-        files: ['**/*.{ts,tsx}'],
-        extends: [
-            js.configs.recommended,
-            tseslint.configs.recommended,
-            reactHooks.configs['recommended-latest'],
-            reactRefresh.configs.vite,
-        ],
+        files: ['src/**/*.{ts,tsx}'],
         languageOptions: {
-            ecmaVersion: 2020,
-            globals: globals.browser,
+            parser: tseslint.parser,
+            parserOptions: {
+                project: true,
+            },
         },
     },
-]);
+];

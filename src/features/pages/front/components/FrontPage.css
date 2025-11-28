@@ -4,11 +4,3 @@
     overflow: hidden;
 }
 
-.front-background-wrapper-overlay {
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(16px);
-    z-index: 1;
-    pointer-events: none;
-}

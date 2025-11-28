@@ -1,0 +1,16 @@
+.pricing-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: var(--background-3);
+    width: 20%;
+    min-height: 300px;
+    transition: border-radius 0.7s ease, padding 0.7s ease;
+}
+
+.pricing-card:hover {
+    border-radius: 3rem;
+    padding: 1.5rem;
+}

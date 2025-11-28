@@ -1,15 +1,18 @@
+import { Footer } from '../../footer/components/Footer';
+import { Header } from '../../header/components/Header';
+import { Loading } from '../../loading/components/Loading';
+import { Page } from '../../page/components/Page';
 import './PricingPage.css';
-import { Footer } from "../../footer/components/Footer"
-import { Header } from "../../header/components/Header"
-import { Page } from "../../page/components/Page"
 import { CardsSection } from './sections/CardsSection';
 
 export const PricingPage = () => {
     return (
         <Page>
-            <Header/>
-            <CardsSection/>
-            <Footer/>
+            <Header />
+            <Loading />
+
+            <CardsSection />
+            <Footer />
         </Page>
-    )
-}
+    );
+};
