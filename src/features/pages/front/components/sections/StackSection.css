@@ -1,19 +1,23 @@
-/* stack */
+/* section */
 .stack-section {
+    overflow-x: hidden;
+}
+
+/* container */
+.stack-container {
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
+    gap: 1rem;
 }
 
 @media (max-width: 768px) {
-    .stack-section {
+    .stack-container {
         flex-direction: column;
         gap: 4rem;
     }
 }
 
-/* container */
-.stack-container {
+.stack {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -26,6 +30,12 @@
     justify-content: center;
     gap: 2rem;
     grid-template-columns: repeat(2, minmax(64px, 256px));
+}
+
+@media (max-width: 1024px) {
+    .stack-grid {
+        gap: 0.5rem;
+    }
 }
 
 .stack-element {

@@ -48,6 +48,7 @@ export const GridSection = () => {
             <div className='grid-section-border'>
                 <BentoGridCanvas />
             </div>
+            <hr/>
         </section>
     );
 };

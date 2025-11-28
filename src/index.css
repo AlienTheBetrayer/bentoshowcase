@@ -190,6 +190,14 @@ small {
     font-size: inherit;
 }
 
+hr {
+    width: 100%;
+    height: 1.5px;
+    border: transparent;
+    margin: 3rem 0;
+    background: linear-gradient(137deg, var(--background-3), var(--background-6))
+}
+
 /* utilities */
 .page {
     display: grid;

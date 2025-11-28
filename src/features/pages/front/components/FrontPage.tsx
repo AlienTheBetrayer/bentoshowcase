@@ -15,7 +15,7 @@ export const FrontPage = () => {
     return (
         <Page>
             <BentoProvider>
-                <div style={{ display: 'grid', zIndex: '1', gap: '4rem' }}>
+                <div style={{ display: 'grid', zIndex: '1' }}>
                     <Loading />
 
                     <Header />

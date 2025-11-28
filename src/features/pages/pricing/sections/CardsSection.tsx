@@ -5,6 +5,7 @@ export const CardsSection = () => {
     return (
         <section className='section cards-section'>
             <PricingCards />
+            <hr/>
         </section>
     );
 };

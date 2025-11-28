@@ -88,6 +88,7 @@ export const IntroSection = () => {
                     </>
                 )}
             </div>
+            <hr/>
         </section>
     );
 };
