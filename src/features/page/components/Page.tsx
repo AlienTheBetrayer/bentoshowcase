@@ -3,14 +3,13 @@ import { LoadingProvider } from '../../loading/context/LoadingContext';
 
 interface Props {
     children?: React.ReactNode;
+    className?: string;
 }
 
-export const Page = ({ children }: Props) => {
+export const Page = ({ children, className }: Props) => {
     return (
         <LoadingProvider>
-            <main className='page'>
-                {children}
-            </main>
+            <main className={`page ${className ?? ''}`}>{children}</main>
         </LoadingProvider>
     );
 };

@@ -1,7 +1,7 @@
 .pricing-card {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1.5rem;
     padding: 1rem;
     border-radius: 1rem;
     background-color: var(--background-3);
@@ -9,6 +9,12 @@
     min-height: 250px;
     transition: border-radius 0.7s ease, padding 0.7s ease;
     position: relative;
+}
+
+@media (max-width: 768px) {
+    .pricing-card {
+        min-height: 300px;
+    }
 }
 
 .pricing-card > * {
@@ -24,12 +30,14 @@
     color: var(--background-4);
     z-index: 0;
     transition: 0.3s ease;
+    pointer-events: none;
+    user-select: none;
 }
 
 /* effects */
 .pricing-card:hover {
     border-radius: 3rem;
-    padding: 1.5rem;
+    padding: 1rem 2rem;
 }
 
 .pricing-card:hover .pricing-card-bg {
@@ -46,6 +54,7 @@
     outline: 2px solid var(--background-4);
     border-radius: 1rem;
     transition: 0.7s ease;
+    pointer-events: none;
 }
 
 .pricing-card:hover .business-card-selection {
@@ -55,4 +64,29 @@
     bottom: -15%;
     border-radius: 4rem;
     outline-color: var(--backgrund-6);
+}
+
+.pricing-card-action {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .pricing-card-action {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 0.7rem;
+    }
+}
+
+.pricing-card-action-button {
+    min-width: 72px;
+}
+
+@media (max-width: 768px) {
+    .pricing-card-action-button {
+        width: 100%;
+    }
 }

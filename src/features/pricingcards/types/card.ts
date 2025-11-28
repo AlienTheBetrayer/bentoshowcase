@@ -4,6 +4,7 @@ export interface PricingCardType {
         usage: string;
         forWho: string;
     };
-    price: number;
+    price: string;
     className?: string;
+    background?: string;
 }

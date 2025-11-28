@@ -7,7 +7,7 @@ import { CardsSection } from './sections/CardsSection';
 
 export const PricingPage = () => {
     return (
-        <Page>
+        <Page className='pricing-page'>
             <Header />
             <Loading />
 

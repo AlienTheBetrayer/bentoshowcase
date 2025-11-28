@@ -24,5 +24,6 @@
     .cards-container {
         flex-direction: column;
         gap: 2rem;
+        overflow-x: hidden;
     }
 }

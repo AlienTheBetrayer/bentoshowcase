@@ -2,36 +2,40 @@ import type { PricingCardType } from '../types/card';
 
 export const PricingCardsData: PricingCardType[] = [
     {
-        title: 'Starter',
+        title: '<mark>Starter</mark>',
         description: {
-            usage: 'Basic access for individuals exploring the platform.',
-            forWho: 'Perfect for beginners or casual users.',
+            usage: 'Basic access for individuals exploring the platform with our <mark>core features</mark>.',
+            forWho: 'Perfect for <b>beginners</b> or casual users.',
         },
-        price: 0,
+        price: 'FREE',
+        background: 'S',
     },
     {
         title: 'Pro',
         description: {
-            usage: 'Enhanced tools and priority performance for daily use.',
-            forWho: 'Ideal for freelancers and growing creators.',
+            usage: 'Enhanced tools and priority performance for <mark>everyday productivity</mark>.',
+            forWho: 'Ideal for <b>freelancers</b> and growing creators seeking more control.',
         },
-        price: 9,
+        price: '8.99$',
+        background: 'P',
     },
     {
-        title: 'Business',
+        title: '<mark>Business</mark> Suite',
         description: {
-            usage: 'Advanced features, collaboration, and extended limits.',
-            forWho: 'Designed for teams and small companies.',
+            usage: 'Advanced capabilities, team collaboration, and <mark>extended resource limits</mark>.',
+            forWho: 'Designed for <b>teams</b> and small companies needing reliability.',
         },
-        price: 29,
-        className: 'business-card'
+        price: '28.99$',
+        className: 'business-card',
+        background: '$',
     },
     {
         title: 'Elite',
         description: {
-            usage: 'Maximum performance, premium features, and priority support.',
-            forWho: 'Built for organizations that require the highest reliability.',
+            usage: 'Maximum performance, premium features, and <mark>priority-level support</mark>.',
+            forWho: 'Built for organizations requiring <b>unmatched stability</b>.',
         },
-        price: 99,
+        price: '98.99$',
+        background: 'E',
     },
 ];
