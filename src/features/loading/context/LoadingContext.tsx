@@ -27,21 +27,14 @@ export const LoadingProvider = ({ children }: Props) => {
 
     // syncing session store with our state
     useEffect(() => {
-        if (
-            state.hasHeaderFinished &&
-            state.hasInitialFinished &&
-            !sessionStore.loaded
-        ) {
+        if (state.hasInitialFinished && !sessionStore.loaded) {
             sessionStore.updateLoaded(true);
         }
     }, [state, sessionStore.loaded]);
 
     // syncing our state with the session store
     useEffect(() => {
-        if (
-            sessionStore.loaded &&
-            !(state.hasHeaderFinished || state.hasInitialFinished)
-        ) {
+        if (sessionStore.loaded && !state.hasInitialFinished) {
             setState((prev) => ({
                 ...prev,
                 hasHeaderFinished: true,

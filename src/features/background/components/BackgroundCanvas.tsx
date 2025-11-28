@@ -3,10 +3,11 @@ import { Bloom, EffectComposer } from '@react-three/postprocessing';
 import './BackgroundCanvas.css';
 
 import { motion } from 'motion/react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useCursorRef } from '../../../hooks/useCursorRef';
 import { useMediaQuery } from '../../../hooks/useMediaQuery';
 import { useLocalStore } from '../../../zustand/localStore';
+import { useSessionStore } from '../../../zustand/sessionStore';
 import { BackgroundLight } from './BackgroundLight';
 import { BackgroundParticles } from './BackgroundParticles';
 
@@ -22,6 +23,21 @@ export const BackgroundCanvas = () => {
     const [isLagging, setIsLagging] = useState<boolean>(false);
     const [isLaggingDisabled, setIsLaggingDisabled] = useState<boolean>(false);
     const isMac = /Mac|MacIntel|MacPPC|Mac68K/i.test(navigator.userAgent);
+
+    const sessionStore = useSessionStore();
+
+    // syncing session store with isLagging
+    useEffect(() => {
+        if (isLagging && !sessionStore.effectsReduced) {
+            sessionStore.updateEffectsReduced(true);
+        }
+    }, [isLagging, sessionStore.effectsReduced]);
+
+    useEffect(() => {
+        if (sessionStore.effectsReduced && !isLagging) {
+            setIsLagging(true);
+        }
+    }, [sessionStore.effectsReduced]);
 
     return (
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
@@ -45,7 +61,8 @@ export const BackgroundCanvas = () => {
                 )}
 
             <Canvas
-                style={{ width: '100%', height: '100%', pointerEvents: 'none' }} dpr={dpr}
+                style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
+                dpr={dpr}
             >
                 {theme === 'dark' &&
                     !isMobile &&
