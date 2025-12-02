@@ -10,6 +10,8 @@ import uploadImg from './assets/upload.svg';
 export const FileUploadMenu = () => {
     const [state, dispatch] = useUploadContext();
 
+    const errorFound = state.files.some((file) => file.error !== undefined);
+
     return (
         <ul className='file-upload-menu'>
             <li>
@@ -38,16 +40,21 @@ export const FileUploadMenu = () => {
                         state.files.length > 0 &&
                         state.files.some(
                             (file) =>
-                                (file.hasUploaded ?? false) === false &&
-                                (file.isUploading ?? false) === false
+                                ((file.hasUploaded ?? false) === false &&
+                                    (file.isUploading ?? false) === false) ||
+                                errorFound
                         )
                     }
                     onClick={() => {
-                        dispatch({ type: 'UPLOAD_CURRENT' });
+                        dispatch({
+                            type: `${
+                                errorFound ? 'RELOAD_ERRORS' : 'UPLOAD_CURRENT'
+                            }`,
+                        });
                     }}
                 >
                     <img src={uploadImg} className='img' alt='upload' />
-                    Upload All
+                    {errorFound ? 'Reload all' : 'Upload All'}
                 </Button>
             </li>
         </ul>

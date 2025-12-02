@@ -25,7 +25,8 @@ export type UploadReducerAction =
     | { type: 'UPDATE_FILE_PROGRESS'; file: UploadFile; progress: number }
 
     // error handling
-    | { type: 'ERROR_FILE'; file: UploadFile, error: string };
+    | { type: 'ERROR_FILE'; file: UploadFile; error: string }
+    | { type: 'RELOAD_ERRORS' };
 
 export const UploadReducer = (
     state: UploadData,
@@ -81,7 +82,13 @@ export const UploadReducer = (
                 files: state.files.map((element) =>
                     element.file.name === action.file.file.name &&
                     element.file.size === action.file.file.size
-                        ? { ...element, error: undefined, progress: 0 }
+                        ? {
+                              ...element,
+                              error: undefined,
+                              progress: 0,
+                              isUploading: true,
+                              hasUploaded: false,
+                          }
                         : element
                 ),
             };
@@ -95,7 +102,13 @@ export const UploadReducer = (
                             f.file.name === element.file.name &&
                             f.file.size === element.file.size
                     )
-                        ? { ...element, error: undefined, progress: 0 }
+                        ? {
+                              ...element,
+                              error: undefined,
+                              progress: 0,
+                              isUploading: true,
+                              hasUploaded: false,
+                          }
                         : element
                 ),
             };
@@ -191,6 +204,25 @@ export const UploadReducer = (
                         ? { ...element, error: action.error }
                         : element
                 ),
+            };
+        case 'RELOAD_ERRORS':
+            return {
+                ...state,
+                files: state.files.map((element) =>
+                    element.error
+                        ? {
+                              ...element,
+                              error: undefined,
+                              isUploading: true,
+                              hasUploaded: false,
+                              progress: 0,
+                          }
+                        : element
+                ),
+                awaitingUpload: [
+                    ...state.awaitingUpload,
+                    ...state.files.filter((file) => file.error !== undefined),
+                ],
             };
     }
 };

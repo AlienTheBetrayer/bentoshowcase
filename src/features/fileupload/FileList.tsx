@@ -9,7 +9,9 @@ export const FileList = () => {
         <div className='file-list-container'>
             <h4 style={{ textAlign: 'center' }}>
                 <mark>Uploaded</mark> files:
-                {state.files.some(file => file.error !== undefined) && <u> (ERROR)</u>}
+                {state.files.some((file) => file.error !== undefined) && (
+                    <u> (ERROR)</u>
+                )}
             </h4>
             <ul className='file-list'>
                 {state.files.map((file, idx) => (
@@ -52,7 +54,9 @@ export const FileListElement = ({ file, onDelete, onUpload }: ElementProps) => {
         >
             <span>{file.file.name}</span>
             <span>
-                {(file.isUploading ?? false) === true && file.error === undefined && 'Wait...'}
+                {(file.isUploading ?? false) === true &&
+                    file.error === undefined &&
+                    'Wait...'}
                 {(file.hasUploaded ?? false) === true && 'Uploaded!'}
                 {file.error ? file.error : ''}
             </span>
@@ -60,8 +64,9 @@ export const FileListElement = ({ file, onDelete, onUpload }: ElementProps) => {
                 <Button onClick={() => onDelete(file)}>Delete</Button>
                 <Button
                     isEnabled={
-                        (file.isUploading ?? false) === false &&
-                        (file.hasUploaded ?? false) === false || file.error !== undefined 
+                        ((file.isUploading ?? false) === false &&
+                            (file.hasUploaded ?? false) === false) ||
+                        file.error !== undefined
                     }
                     onClick={() => onUpload(file)}
                 >
