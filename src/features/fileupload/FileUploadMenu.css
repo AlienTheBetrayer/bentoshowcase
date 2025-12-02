@@ -5,6 +5,13 @@
     gap: 1rem;
 }
 
+@media (max-width: 640px) {
+    .file-upload-menu {
+        gap: 0.5rem;
+        flex-direction: column;
+    }
+}
+
 .file-upload-menu button,
 .file-upload-menu label {
     border: 1px solid var(--background-3);
@@ -13,4 +20,12 @@
 
 .file-upload-menu li {
     flex: 1;
+}
+
+@media (max-width: 640px) {
+    .file-upload-menu button,
+    .file-upload-menu label {
+        padding-top: 0.9rem;
+        padding-bottom: 0.9rem;
+    }
 }
