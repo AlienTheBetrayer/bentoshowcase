@@ -1,0 +1,58 @@
+/* list */
+.file-list {
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* element */
+.file-list-element {
+    display: grid;
+    grid-template-columns: 25% 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    min-height: 4rem;
+    width: 100%;
+    max-width: 40rem;
+    padding: 1rem 1.5rem;
+    border-radius: 12px; 
+    background-color: var(--background-3);
+    position: relative;
+    outline: 1px solid transparent;
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+.file-list-element:hover {
+    outline-color: hsl(240, 30%, 50%);
+}
+
+.file-list-element > * {
+    z-index: 1;
+}
+
+.file-list-element span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.file-list-element:nth-child(even) {
+    background-color: var(--background-2);
+}
+
+.file-list-element button {
+    border: 1px solid var(--background-5);
+}
+
+/* progress bar */
+.file-list-element-progress {
+    position: absolute;
+    background-color: var(--background-5);
+    transform-origin: left;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 0;
+    transition: 1s ease;
+}

@@ -12,8 +12,6 @@ export const PricingCards = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.75 }}
             >
-                <h2 style={{ textAlign: 'center' }}>Pricing</h2>
-
                 <div className='cards-container'>
                     {PricingCardsData.map((card, idx) => (
                         <PricingCard card={card} key={idx} />

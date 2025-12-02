@@ -39,7 +39,7 @@ export const GridSection = () => {
 
     useEffect(() => {
         cardPopup.setIsShown(state.selectedIdx !== false);
-    }, [state.selectedIdx]);
+    }, [cardPopup, state.selectedIdx]);
 
     return (
         <section className='section grid-section' style={{ marginTop: '4rem' }}>

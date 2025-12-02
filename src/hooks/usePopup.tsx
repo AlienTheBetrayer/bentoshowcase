@@ -1,5 +1,5 @@
 import { AnimatePresence } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { motion } from 'motion/react';
@@ -44,7 +44,7 @@ export const usePopup = (
         }
     }, [isShown]);
 
-    const render = () => {
+    const render = useCallback(() => {
         return createPortal(
             <>
                 <AnimatePresence>{isShown && element}</AnimatePresence>
@@ -72,7 +72,7 @@ export const usePopup = (
 
             document.body
         );
-    };
+    }, [isShown, element]);
 
     return {
         isShown,
