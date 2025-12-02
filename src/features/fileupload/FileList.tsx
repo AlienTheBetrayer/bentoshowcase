@@ -1,4 +1,4 @@
-import { Button } from '../button/Button';
+import { Button } from '../ui/Button/components/Button';
 import { useUploadContext, type UploadFile } from './context/UploadContext';
 import './FileList.css';
 import { bytesToString } from './utils/bytesToString';

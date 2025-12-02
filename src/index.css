@@ -126,8 +126,9 @@ label {
     margin: 0;
 }
 
-button {
-    cursor: pointer;
+ul, li {
+    margin: 0;
+    list-style: none;
 }
 
 h1 {

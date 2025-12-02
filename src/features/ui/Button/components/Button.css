@@ -9,6 +9,7 @@
     min-height: 32px;
     border: transparent;
     transition: 0.15s;
+    cursor: pointer;
 }
 
 .button:hover {
@@ -17,4 +18,10 @@
 
 .button:active {
     background-color: var(--background-5);
+}
+
+/* button states */
+.button-disabled {
+    pointer-events: none;
+    opacity: 0.3;
 }
