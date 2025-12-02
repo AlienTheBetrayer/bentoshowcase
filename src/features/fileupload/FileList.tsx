@@ -1,14 +1,16 @@
 import { Button } from '../ui/Button/components/Button';
 import { useUploadContext, type UploadFile } from './context/UploadContext';
 import './FileList.css';
-import { bytesToString } from './utils/bytesToString';
 
 export const FileList = () => {
     const [state, dispatch] = useUploadContext();
 
     return (
         <div className='file-list-container'>
-            <h4 style={{ textAlign: 'center' }}><mark>Uploaded</mark> files:</h4>
+            <h4 style={{ textAlign: 'center' }}>
+                <mark>Uploaded</mark> files:
+                {state.files.some(file => file.error !== undefined) && <u> (ERROR)</u>}
+            </h4>
             <ul className='file-list'>
                 {state.files.map((file, idx) => (
                     <FileListElement
@@ -35,23 +37,35 @@ type ElementProps = {
 
 export const FileListElement = ({ file, onDelete, onUpload }: ElementProps) => {
     return (
-        <li className='file-list-element'>
+        <li
+            className={`file-list-element ${
+                (file.isUploading ?? false) === true
+                    ? 'file-list-element-uploading'
+                    : ''
+            }
+        ${
+            (file.hasUploaded ?? false) === true
+                ? 'file-list-element-has-uploaded'
+                : ''
+        }
+        ${file.error ?? false ? 'file-list-element-error' : ''}`}
+        >
             <span>{file.file.name}</span>
             <span>
-                progress: {bytesToString(file.progress ?? 0)} is:{' '}
-                {(file.isUploading ?? false).toString()} has:{' '}
-                {(file.hasUploaded ?? false).toString()}
+                {(file.isUploading ?? false) === true && file.error === undefined && 'Wait...'}
+                {(file.hasUploaded ?? false) === true && 'Uploaded!'}
+                {file.error ? file.error : ''}
             </span>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
                 <Button onClick={() => onDelete(file)}>Delete</Button>
                 <Button
                     isEnabled={
                         (file.isUploading ?? false) === false &&
-                        (file.hasUploaded ?? false) === false
+                        (file.hasUploaded ?? false) === false || file.error !== undefined 
                     }
                     onClick={() => onUpload(file)}
                 >
-                    Upload
+                    {file.error === undefined ? 'Upload' : 'Reload'}
                 </Button>
             </div>
 

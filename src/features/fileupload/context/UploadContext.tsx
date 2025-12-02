@@ -8,6 +8,7 @@ export type UploadFile = {
     progress?: number;
     isUploading?: boolean;
     hasUploaded?: boolean;
+    error?: string;
 };
 
 export type UploadData = {

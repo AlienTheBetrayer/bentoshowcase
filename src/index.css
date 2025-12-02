@@ -50,6 +50,9 @@
     --invert: 0.75;
     --background-orb-foreground: hsl(229, 100%, 80%);
     --background-orb-opacity: 0.3;
+    --upload-progress: #000;
+    --upload-progress-2: hsl(240, 30%, 20%);
+    --upload-text: var(--foreground);
 }
 
 :root[data-theme='light'] {
@@ -69,6 +72,11 @@
     --background-13: hsl(0, 0%, 40%);
     --background-14: hsl(0, 0%, 35%);
     --background-15: hsl(0, 0%, 30%);
+    --background-16: hsl(0, 0%, 25%);
+    --background-17: hsl(0, 0%, 20%);
+    --background-18: hsl(0, 0%, 15%);
+    --background-19: hsl(0, 0%, 10%);
+    --background-20: hsl(0, 0%, 5%);
 
     /* transparent background */
     --background-transparent: hsla(0, 0%, 100%, 0.4);
@@ -96,6 +104,9 @@
     --invert: 0;
     --background-orb-foreground: #606060;
     --background-orb-opacity: 1;
+    --upload-progress: var(--background-3);
+    --upload-progress-2: hsl(240, 20%, 50%);
+    --upload-text: var(--background-17);
 }
 
 /* global elements */

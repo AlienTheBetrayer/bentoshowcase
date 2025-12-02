@@ -6,12 +6,14 @@ type UploadFunctions = {
     onStart?: (file: UploadFile) => void;
     onProgress?: (file: UploadFile, progress: number) => void;
     onFinish?: (file: UploadFile) => void;
+    onError?: (file: UploadFile, error: string) => void;
 };
 
 export const useUpload = ({
     onFinish,
     onStart,
     onProgress,
+    onError,
 }: UploadFunctions) => {
     // state
     const [files, setFiles] = useState<UploadFile[]>([]);
@@ -42,6 +44,8 @@ export const useUpload = ({
                     onFinish?.(file);
                     return { file, response };
                 } catch (e) {
+                    console.log(`ERROR: ${e}`);
+                    onError?.(file, `${e}`);
                     throw e;
                 }
             });

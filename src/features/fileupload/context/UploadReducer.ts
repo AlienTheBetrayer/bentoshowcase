@@ -22,7 +22,10 @@ export type UploadReducerAction =
     | { type: 'FINISH_FILES'; files: UploadFile[] }
 
     // progress
-    | { type: 'UPDATE_FILE_PROGRESS'; file: UploadFile; progress: number };
+    | { type: 'UPDATE_FILE_PROGRESS'; file: UploadFile; progress: number }
+
+    // error handling
+    | { type: 'ERROR_FILE'; file: UploadFile, error: string };
 
 export const UploadReducer = (
     state: UploadData,
@@ -75,11 +78,26 @@ export const UploadReducer = (
             return {
                 ...state,
                 awaitingUpload: [...state.awaitingUpload, action.file],
+                files: state.files.map((element) =>
+                    element.file.name === action.file.file.name &&
+                    element.file.size === action.file.file.size
+                        ? { ...element, error: undefined, progress: 0 }
+                        : element
+                ),
             };
         case 'UPLOAD_FILES':
             return {
                 ...state,
                 awaitingUpload: [...state.awaitingUpload, ...action.files],
+                files: state.files.map((element) =>
+                    action.files.find(
+                        (f) =>
+                            f.file.name === element.file.name &&
+                            f.file.size === element.file.size
+                    )
+                        ? { ...element, error: undefined, progress: 0 }
+                        : element
+                ),
             };
         case 'UPLOAD_CURRENT':
             return {
@@ -99,55 +117,55 @@ export const UploadReducer = (
                 awaitingUpload: state.awaitingUpload.filter(
                     (file) => file !== action.file
                 ),
-                files: state.files.map((file) =>
-                    file.file.name === action.file.file.name &&
-                    file.file.size === action.file.file.size
-                        ? { ...file, isUploading: true }
-                        : file
+                files: state.files.map((element) =>
+                    element.file.name === action.file.file.name &&
+                    element.file.size === action.file.file.size
+                        ? { ...element, isUploading: true }
+                        : element
                 ),
             };
         case 'AWAITING_REMOVE_FILES':
             return {
                 ...state,
                 awaitingUpload: state.awaitingUpload.filter(
-                    (file) =>
+                    (element) =>
                         !state.awaitingUpload.find(
                             (f) =>
-                                f.file.name === file.file.name &&
-                                f.file.size === file.file.size
+                                f.file.name === element.file.name &&
+                                f.file.size === element.file.size
                         )
                 ),
-                files: state.files.map((file) =>
+                files: state.files.map((element) =>
                     action.files.find(
                         (f) =>
-                            f.file.name === file.file.name &&
-                            f.file.size === file.file.size
+                            f.file.name === element.file.name &&
+                            f.file.size === element.file.size
                     )
-                        ? { ...file, isUploading: true }
-                        : file
+                        ? { ...element, isUploading: true }
+                        : element
                 ),
             };
         case 'FINISH_FILE':
             return {
                 ...state,
-                files: state.files.map((file) =>
-                    file.file.name === action.file.file.name &&
-                    file.file.size === action.file.file.size
-                        ? { ...file, isUploading: false, hasUploaded: true }
-                        : file
+                files: state.files.map((element) =>
+                    element.file.name === action.file.file.name &&
+                    element.file.size === action.file.file.size
+                        ? { ...element, isUploading: false, hasUploaded: true }
+                        : element
                 ),
             };
         case 'FINISH_FILES':
             return {
                 ...state,
-                files: state.files.map((file) =>
+                files: state.files.map((element) =>
                     action.files.find(
                         (f) =>
-                            f.file.name === file.file.name &&
-                            f.file.size === file.file.size
+                            f.file.name === element.file.name &&
+                            f.file.size === element.file.size
                     )
-                        ? { ...file, isUploading: false, hasUploaded: true }
-                        : file
+                        ? { ...element, isUploading: false, hasUploaded: true }
+                        : element
                 ),
             };
 
@@ -155,11 +173,23 @@ export const UploadReducer = (
         case 'UPDATE_FILE_PROGRESS':
             return {
                 ...state,
-                files: state.files.map((file) =>
-                    file.file.name === action.file.file.name &&
-                    file.file.size === action.file.file.size
-                        ? { ...file, progress: action.progress }
-                        : file
+                files: state.files.map((element) =>
+                    element.file.name === action.file.file.name &&
+                    element.file.size === action.file.file.size
+                        ? { ...element, progress: action.progress }
+                        : element
+                ),
+            };
+
+        // error
+        case 'ERROR_FILE':
+            return {
+                ...state,
+                files: state.files.map((element) =>
+                    element.file.name === action.file.file.name &&
+                    element.file.size === action.file.file.size
+                        ? { ...element, error: action.error }
+                        : element
                 ),
             };
     }

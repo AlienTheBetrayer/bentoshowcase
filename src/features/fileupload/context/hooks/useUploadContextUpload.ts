@@ -21,6 +21,9 @@ export const useUploadContextUpload = (
         onFinish: (file) => {
             dispatch({ type: 'FINISH_FILE', file: file });
         },
+        onError: (file, error) => {
+            dispatch({ type: 'ERROR_FILE', file: file, error: error });
+        },
     });
 
     useEffect(() => {
