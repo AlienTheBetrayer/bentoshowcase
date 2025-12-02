@@ -44,7 +44,6 @@ export const useUpload = ({
                     onFinish?.(file);
                     return { file, response };
                 } catch (e) {
-                    console.log(`ERROR: ${e}`);
                     onError?.(file, `${e}`);
                     throw e;
                 }
