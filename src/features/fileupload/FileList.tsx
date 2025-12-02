@@ -7,8 +7,8 @@ export const FileList = () => {
     const [state, dispatch] = useUploadContext();
 
     return (
-        <>
-            <h4>Files:</h4>
+        <div className='file-list-container'>
+            <h4 style={{ textAlign: 'center' }}><mark>Uploaded</mark> files:</h4>
             <ul className='file-list'>
                 {state.files.map((file, idx) => (
                     <FileListElement
@@ -23,7 +23,7 @@ export const FileList = () => {
                     />
                 ))}
             </ul>
-        </>
+        </div>
     );
 };
 

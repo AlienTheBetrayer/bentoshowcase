@@ -2,6 +2,8 @@ import { Button } from '../../ui/Button/components/Button';
 import type { PricingCardType } from '../types/card';
 import './PricingCard.css';
 
+import orderImg from '../assets/order.svg';
+
 interface Props {
     card: PricingCardType;
 }
@@ -15,7 +17,10 @@ export const PricingCard = ({ card }: Props) => {
             <p dangerouslySetInnerHTML={{ __html: card.description.forWho }} />
 
             <div className='pricing-card-action'>
-                <Button className='pricing-card-action-button'>Order</Button>
+                <Button className='pricing-card-action-button'>
+                    <img src={orderImg} alt='order' className='img' />
+                    Order
+                </Button>
                 <p>{card.price}</p>
             </div>
 

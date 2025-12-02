@@ -1,3 +1,16 @@
 .file-upload-menu {
-    
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    gap: 1rem;
+}
+
+.file-upload-menu button,
+.file-upload-menu label {
+    border: 1px solid var(--background-3);
+    width: 100%;
+}
+
+.file-upload-menu li {
+    flex: 1;
 }

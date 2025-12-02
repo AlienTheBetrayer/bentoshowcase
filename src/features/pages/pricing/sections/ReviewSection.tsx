@@ -18,6 +18,7 @@ export const ReviewSection = () => {
                 </div>
 
                 <FileUpload />
+                <hr/>
             </section>
         </UploadProvider>
     );

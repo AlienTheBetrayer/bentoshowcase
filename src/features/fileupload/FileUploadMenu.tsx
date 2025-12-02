@@ -1,6 +1,11 @@
 import { FileInput } from '../fileinput/FileInput';
+import { Button } from '../ui/Button/components/Button';
 import { useUploadContext } from './context/UploadContext';
 import './FileUploadMenu.css';
+
+import clearImg from './assets/clear.svg';
+import selectImg from './assets/select.svg';
+import uploadImg from './assets/upload.svg';
 
 export const FileUploadMenu = () => {
     const [state, dispatch] = useUploadContext();
@@ -12,7 +17,38 @@ export const FileUploadMenu = () => {
                     onSelect={(files) => {
                         dispatch({ type: 'ADD_FILES', files: files });
                     }}
-                />
+                >
+                    <img src={selectImg} className='img' alt='select' />
+                </FileInput>
+            </li>
+            <li>
+                <Button
+                    isEnabled={state.files.length > 0}
+                    onClick={() => {
+                        dispatch({ type: 'CLEAR_FILES' });
+                    }}
+                >
+                    <img src={clearImg} className='img' alt='clear' />
+                    Clear
+                </Button>
+            </li>
+            <li>
+                <Button
+                    isEnabled={
+                        state.files.length > 0 &&
+                        state.files.some(
+                            (file) =>
+                                (file.hasUploaded ?? false) === false &&
+                                (file.isUploading ?? false) === false
+                        )
+                    }
+                    onClick={() => {
+                        dispatch({ type: 'UPLOAD_CURRENT' });
+                    }}
+                >
+                    <img src={uploadImg} className='img' alt='upload' />
+                    Upload All
+                </Button>
             </li>
         </ul>
     );

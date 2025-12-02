@@ -7,6 +7,7 @@
     background-color: var(--background-7-transparent);
     transition: background 0.5s, border 0.15s;
     border: transparent;
+    cursor: pointer;
 }
 
 .toggle-button-thumb {

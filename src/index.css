@@ -47,6 +47,7 @@
 
     /* element-specific */
     --bold-brightness: 1.5;
+    --invert: 0.75;
     --background-orb-foreground: hsl(229, 100%, 80%);
     --background-orb-opacity: 0.3;
 }
@@ -92,6 +93,7 @@
 
     /* element-specific */
     --bold-brightness: 0.65;
+    --invert: 0;
     --background-orb-foreground: #606060;
     --background-orb-opacity: 1;
 }
@@ -128,6 +130,7 @@ label {
 
 ul, li {
     margin: 0;
+    padding: 0;
     list-style: none;
 }
 
@@ -227,6 +230,12 @@ hr {
     padding: 0 1rem;
 }
 
+@media (max-width: 640px) {
+    .section {
+        padding: 0.5rem;
+    }
+}
+
 .info {
     display: flex;
     flex-direction: column;
@@ -238,8 +247,8 @@ hr {
     margin-bottom: 4rem;
 }
 
-@media (max-width: 640px) {
-    .section {
-        padding: 0.5rem;
-    }
+.img {
+    width: 1rem;
+    height: 1rem;
+    filter: invert(var(--invert)) grayscale(1);
 }

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import '../ui/Button/components/Button.css';
 import './FileInput.css';
 
@@ -6,12 +6,14 @@ type Props = {
     label?: string;
     onSelect?: (files: FileList | null) => void;
     isEnabled?: boolean;
+    children?: React.ReactNode;
 };
 
 export const FileInput = ({
     label = 'Select files',
     onSelect,
     isEnabled = true,
+    children,
 }: Props) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -36,6 +38,7 @@ export const FileInput = ({
                 htmlFor='file-upload'
                 className={`button ${!isEnabled ? 'button-disabled' : ''}`}
             >
+                {children}
                 {label}
             </label>
         </>

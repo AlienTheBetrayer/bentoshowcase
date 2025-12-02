@@ -7,7 +7,10 @@ import { LinkButton } from '../../ui/LinkButton/components/LinkButton';
 import { ToggleButton } from '../../ui/ToggleButton/components/ToggleButton';
 import { useHeaderAnimation } from '../hooks/useHeaderAnimation';
 
-export const headerSize = 256;
+import homeImg from '../assets/home.svg';
+import pricingImg from '../assets/pricing.svg';
+
+export const headerSize = 300;
 
 export const Header = () => {
     const [loadingState] = useLoadingContext();
@@ -24,8 +27,24 @@ export const Header = () => {
             }
         >
             <nav>
-                <LinkButton to='/home'>Home</LinkButton>
-                <LinkButton to='/pricing'>Pricing</LinkButton>
+                <LinkButton to='/home'>
+                    <img
+                        src={homeImg}
+                        alt='home'
+                        className='img'
+                        style={{ opacity: 0.5 }}
+                    />
+                    Home
+                </LinkButton>
+                <LinkButton to='/pricing'>
+                    <img
+                        src={pricingImg}
+                        alt='pricing'
+                        className='img'
+                        style={{ opacity: 0.5 }}
+                    />
+                    Pricing
+                </LinkButton>
                 <ToggleButton
                     value={theme !== 'dark'}
                     onChange={() => toggleTheme()}
