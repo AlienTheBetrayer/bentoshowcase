@@ -3,6 +3,7 @@ import { Button } from '../ui/Button/components/Button';
 import { useUploadContext } from './context/UploadContext';
 import './FileUploadMenu.css';
 
+import { useMemo } from 'react';
 import clearImg from './assets/clear.svg';
 import selectImg from './assets/select.svg';
 import uploadImg from './assets/upload.svg';
@@ -10,7 +11,19 @@ import uploadImg from './assets/upload.svg';
 export const FileUploadMenu = () => {
     const [state, dispatch] = useUploadContext();
 
-    const errorFound = state.files.some((file) => file.error !== undefined);
+    const filesAvailable = state.files.length > 0;
+
+    const loadedFound = useMemo(() => {
+        return state.files.some(
+            (file) =>
+                (file.hasUploaded ?? false) === false &&
+                (file.isUploading ?? false) === false
+        );
+    }, [state.files]);
+
+    const errorFound = useMemo(() => {
+        return state.files.some((file) => file.error !== undefined);
+    }, [state.files]);
 
     return (
         <ul className='file-upload-menu'>
@@ -25,7 +38,7 @@ export const FileUploadMenu = () => {
             </li>
             <li>
                 <Button
-                    isEnabled={state.files.length > 0}
+                    isEnabled={filesAvailable}
                     onClick={() => {
                         dispatch({ type: 'CLEAR_FILES' });
                     }}
@@ -36,15 +49,7 @@ export const FileUploadMenu = () => {
             </li>
             <li>
                 <Button
-                    isEnabled={
-                        state.files.length > 0 &&
-                        state.files.some(
-                            (file) =>
-                                ((file.hasUploaded ?? false) === false &&
-                                    (file.isUploading ?? false) === false) ||
-                                errorFound
-                        )
-                    }
+                    isEnabled={(filesAvailable && loadedFound) || errorFound}
                     onClick={() => {
                         dispatch({
                             type: `${
