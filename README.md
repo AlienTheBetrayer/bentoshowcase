@@ -32,8 +32,16 @@ Selecting a grid item reveals its associated content through a smooth animated t
 ![Used stack and libraries](https://raw.githubusercontent.com/AlienTheBetrayer/bentoshowcase/refs/heads/main/readme/preview4.png)
 An overview of the tools and libraries powering the project—from state management and rendering to animation and motion effects. These choices support both performance and creative flexibility.
 
-### 4. Light Theme
-![Light theme](https://raw.githubusercontent.com/AlienTheBetrayer/bentoshowcase/refs/heads/main/readme/preview5.png)
+### 4. Pricing
+![Pricing](https://raw.githubusercontent.com/AlienTheBetrayer/bentoshowcase/refs/heads/main/readme/preview5.png)
+Pricing cards to determine your professional needs and evaluate what features you might need in the nearest future. 
+
+### 5. File Reviewing
+![File requests API](https://raw.githubusercontent.com/AlienTheBetrayer/bentoshowcase/refs/heads/main/readme/preview6.png)
+A performant and parallel way to handle your files and send them to our server so we can then provide you with the required detailes about the future of our collaboration (an actual API).
+
+### 6. Light Theme
+![Light theme](https://raw.githubusercontent.com/AlienTheBetrayer/bentoshowcase/refs/heads/main/readme/preview7.png)
 A demonstration of the light theme variant, showcasing clean readability, balanced contrast, and a polished aesthetic across both UI and 3D elements.
 
 ## ✅ Final Notes
